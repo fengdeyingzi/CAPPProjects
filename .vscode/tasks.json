@@ -1,0 +1,217 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "sdl",
+            
+            "command": "D:\\app\\mingw64\\bin\\gcc.exe",
+            "args": [
+                "${workspaceFolder}\\main.c",
+                "${workspaceFolder}\\capp.c",
+                "${workspaceFolder}\\src\\base.c",
+                "${workspaceFolder}\\src\\sound.c",
+                "${workspaceFolder}\\src\\graphics.c",
+                "${workspaceFolder}\\src\\android.c",
+                "${workspaceFolder}\\src\\exb.c",
+                "${workspaceFolder}\\src\\encode.c",
+                "${workspaceFolder}\\src\\log.c",
+                "${workspaceFolder}\\src\\dsm.c",
+                "${workspaceFolder}\\src\\interpreter\\clibrary.c",
+                "${workspaceFolder}\\src\\interpreter\\capp_run.c",
+                "${workspaceFolder}\\src\\interpreter\\debug.c",
+                "${workspaceFolder}\\src\\interpreter\\expression.c",
+                "${workspaceFolder}\\src\\interpreter\\heap.c",
+                "${workspaceFolder}\\src\\interpreter\\include.c",
+                "${workspaceFolder}\\src\\interpreter\\lex.c",
+                "${workspaceFolder}\\src\\interpreter\\parse.c",
+                "${workspaceFolder}\\src\\interpreter\\platform.c",
+                "${workspaceFolder}\\src\\interpreter\\table.c",
+                "${workspaceFolder}\\src\\interpreter\\type.c",
+                "${workspaceFolder}\\src\\interpreter\\variable.c",
+                "${workspaceFolder}\\src\\interpreter\\platform\\library_msvc.c",
+                "${workspaceFolder}\\src\\interpreter\\platform\\platform_msvc.c",
+                "${workspaceFolder}\\src\\interpreter\\cstdlib\\m_base.c",
+                "${workspaceFolder}\\src\\interpreter\\cstdlib\\m_android.c",
+                // "${workspaceFolder}\\src\\interpreter\\cstdlib\\m_base_i.c",
+                "${workspaceFolder}\\src\\interpreter\\cstdlib\\m_ctype.c",
+                "${workspaceFolder}\\src\\interpreter\\cstdlib\\m_ex_math.c",
+                "${workspaceFolder}\\src\\interpreter\\cstdlib\\m_exb.c",
+                "${workspaceFolder}\\src\\interpreter\\cstdlib\\m_graphics.c",
+                "${workspaceFolder}\\src\\interpreter\\cstdlib\\m_sound.c",
+                // "${workspaceFolder}\\src\\interpreter\\cstdlib\\ctype.c",
+                // "${workspaceFolder}\\src\\interpreter\\cstdlib\\errno.c",
+                // "${workspaceFolder}\\src\\interpreter\\cstdlib\\math.c",
+                // "${workspaceFolder}\\src\\interpreter\\cstdlib\\stdbool.c",
+                // "${workspaceFolder}\\src\\interpreter\\cstdlib\\stdio.c",
+                // "${workspaceFolder}\\src\\interpreter\\cstdlib\\stdlib.c",
+                // "${workspaceFolder}\\src\\interpreter\\cstdlib\\string.c",
+                // "${workspaceFolder}\\src\\interpreter\\cstdlib\\time.c",
+                // "${workspaceFolder}\\src\\interpreter\\cstdlib\\unistd.c",
+                "-I${workspaceFolder}\\src\\",
+                "-I${workspaceFolder}\\src\\interpreter\\",
+                "-I${workspaceFolder}\\",
+                "-L${workspaceFolder}\\",
+                "-LD:\\app\\mingw64\\bin",
+                "-ID:\\app\\mingw64\\include\\SDL2",
+                "-std=c99",
+                // "-Wall",
+                // "-pedantic",
+                // "-gstrict-dwarf",
+                // "-gdwarf-4",
+                "-O0",
+                "-w",
+                "-o",
+                "${workspaceFolder}\\main.exe",
+                "-lmingw32",
+                "-lSDL2main",
+                "-lSDL2",
+                "-lSDL2_ttf",
+                "-lSDL2_image",
+                // "-lSDL2_mixer",
+                // "-mwindows",
+                "-DUNIX_HOST",
+                // "-DUSE_FOPEN",
+                "-DUSE_RENDER",
+                // "-DVER=\"2.1\"",
+                // "-DBUILTIN_MINI_STDLIB",
+                "-DWIN32"
+            ],
+            "options": {
+                
+                "cwd": "D:\\app\\mingw64\\bin\\"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "shell",
+            "label": "sdl_linux",
+            
+            "command": "/usr/bin/gcc",
+            "args": [
+                "${workspaceFolder}/main.c",
+                "${workspaceFolder}/capp.c",
+                "${workspaceFolder}/src/base.c",
+                "${workspaceFolder}/src/graphics.c",
+                "${workspaceFolder}/src/android.c",
+                "${workspaceFolder}/src/exb.c",
+                "${workspaceFolder}/src/encode.c",
+                "${workspaceFolder}/src/log.c",
+                "${workspaceFolder}/src/dsm.c",
+                "${workspaceFolder}/src/interpreter/clibrary.c",
+                "${workspaceFolder}/src/interpreter/capp_run.c",
+                "${workspaceFolder}/src/interpreter/debug.c",
+                "${workspaceFolder}/src/interpreter/expression.c",
+                "${workspaceFolder}/src/interpreter/heap.c",
+                "${workspaceFolder}/src/interpreter/include.c",
+                "${workspaceFolder}/src/interpreter/lex.c",
+                "${workspaceFolder}/src/interpreter/parse.c",
+                "${workspaceFolder}/src/interpreter/platform.c",
+                "${workspaceFolder}/src/interpreter/table.c",
+                "${workspaceFolder}/src/interpreter/type.c",
+                "${workspaceFolder}/src/interpreter/variable.c",
+                "${workspaceFolder}/src/interpreter/platform/library_msvc.c",
+                "${workspaceFolder}/src/interpreter/platform/platform_msvc.c",
+                "${workspaceFolder}/src/interpreter/cstdlib/m_base.c",
+                // "${workspaceFolder}/src/interpreter/cstdlib/ctype.c",
+                // "${workspaceFolder}/src/interpreter/cstdlib/errno.c",
+                // "${workspaceFolder}/src/interpreter/cstdlib/math.c",
+                // "${workspaceFolder}/src/interpreter/cstdlib/stdbool.c",
+                // "${workspaceFolder}/src/interpreter/cstdlib/stdio.c",
+                // "${workspaceFolder}/src/interpreter/cstdlib/stdlib.c",
+                // "${workspaceFolder}/src/interpreter/cstdlib/string.c",
+                // "${workspaceFolder}/src/interpreter/cstdlib/time.c",
+                // "${workspaceFolder}/src/interpreter/cstdlib/unistd.c",
+                "-I${workspaceFolder}/src/",
+                "-I${workspaceFolder}/src/interpreter/",
+                "-I${workspaceFolder}/",
+                "-I/usr/include/SDL2",
+                "-I/usr/include/aarch64-linux-gnu",
+                "-L${workspaceFolder}/",
+                "-std=c99",
+                // "-Wall",
+                // "-pedantic",
+                // "-gstrict-dwarf",
+                // "-gdwarf-4",
+                "-O2",
+                "-o",
+                "${workspaceFolder}/main.elf",
+                "-lm",
+                "-lSDL2main",
+                "-lSDL2",
+                "-lSDL2_ttf",
+                "-lSDL2_image",
+                "-DLINUX",
+                "-DUSE_FOPEN",
+                "-DUNIX_HOST"
+                // "-DVER=\"2.1\"",
+                // "-DBUILTIN_MINI_STDLIB",
+
+            ],
+            "options": {
+                
+                "cwd": "/usr/bin/"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "shell",
+            "label": "test",
+            
+            "command": "D:\\app\\mingw64\\bin\\gcc.exe",
+            "args": [
+                "${workspaceFolder}\\test\\fillrect.c",
+                "-o",
+                "${workspaceFolder}\\${fileBasenameNoExtension}.exe",
+                "-LD:\\app\\mingw64\\bin",
+                "-ID:\\app\\mingw64\\include\\SDL2",
+                "-lmingw32",
+                "-lSDL2main",
+                "-lSDL2",
+                "-lSDL2_ttf",
+                "-lSDL2_image"
+            ],
+            "options": {
+                
+                "cwd": "D:\\app\\mingw64\\bin\\"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "shell",
+            "label": "compile",
+            "command": "g++",
+            "args": [
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

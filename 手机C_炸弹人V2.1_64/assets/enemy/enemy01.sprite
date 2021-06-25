@@ -1,0 +1,432 @@
+<sprite
+ bitmap="enemy01.png"
+ width="40"
+ height="40"
+ 
+>
+  <action
+  name=""
+  mode="1"
+  >
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="0"
+      py="0"
+      />
+   </picture>
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="85"
+      py="0"
+      />
+   </picture>
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="170"
+      py="0"
+      />
+   </picture>
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="255"
+      py="0"
+      />
+   </picture>
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="340"
+      py="0"
+      />
+   </picture>
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="425"
+      py="0"
+      />
+   </picture>
+
+  </action>
+
+  <action
+  name=""
+  mode="1"
+  >
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="0"
+      py="85"
+      />
+   </picture>
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="85"
+      py="85"
+      />
+   </picture>
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="170"
+      py="85"
+      />
+   </picture>
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="255"
+      py="85"
+      />
+   </picture>
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="340"
+      py="85"
+      />
+   </picture>
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="425"
+      py="85"
+      />
+   </picture>
+
+  </action>
+
+  <action
+  name=""
+  mode="1"
+  >
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="0"
+      py="170"
+      />
+   </picture>
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="85"
+      py="170"
+      />
+   </picture>
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="170"
+      py="170"
+      />
+   </picture>
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="255"
+      py="170"
+      />
+   </picture>
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="340"
+      py="170"
+      />
+   </picture>
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="425"
+      py="170"
+      />
+   </picture>
+
+  </action>
+
+  <action
+  name=""
+  mode="1"
+  >
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="0"
+      py="255"
+      />
+   </picture>
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="85"
+      py="255"
+      />
+   </picture>
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="170"
+      py="255"
+      />
+   </picture>
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="255"
+      py="255"
+      />
+   </picture>
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="340"
+      py="255"
+      />
+   </picture>
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="425"
+      py="255"
+      />
+   </picture>
+
+  </action>
+
+  <action
+  name=""
+  mode="0"
+  >
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="0"
+      py="340"
+      />
+   </picture>
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="85"
+      py="340"
+      />
+   </picture>
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="170"
+      py="340"
+      />
+   </picture>
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="255"
+      py="340"
+      />
+   </picture>
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="340"
+      py="340"
+      />
+   </picture>
+
+
+   <picture
+   >
+      <rectflip
+      x="-22"
+      y="-22"
+      width="85"
+      height="85"
+      px="425"
+      py="340"
+      />
+   </picture>
+
+  </action>
+
+</sprite>

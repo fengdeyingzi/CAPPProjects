@@ -1,0 +1,83 @@
+<sprite
+ bitmap="ld2.png"
+ width="40"
+ height="40"
+ 
+>
+  <action
+  name="Í¼¿é1"
+  >
+
+
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="-20"
+      width="40"
+      height="62"
+      px="40"
+      py="0"
+      />
+   </picture>
+
+  </action>
+
+  <action
+  name="Í¼¿é2"
+  >
+
+
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="-20"
+      width="40"
+      height="62"
+      px="0"
+      py="0"
+      />
+   </picture>
+
+  </action>
+
+  <action
+  name="Í¼¿é3"
+  >
+
+
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="-20"
+      width="40"
+      height="40"
+      px="0"
+      py="80"
+      />
+   </picture>
+
+  </action>
+
+  <action
+  name="Í¼¿é4"
+  >
+
+
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="-20"
+      width="40"
+      height="40"
+      px="0"
+      py="120"
+      />
+   </picture>
+
+  </action>
+
+</sprite>

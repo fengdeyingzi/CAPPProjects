@@ -1,0 +1,9 @@
+c/print.txt
+*.elf
+*.exe
+*.o
+*.obj
+*.dll
+*/run.zip
+*.exe
+*/*.zip

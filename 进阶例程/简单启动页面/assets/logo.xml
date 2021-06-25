@@ -1,0 +1,15 @@
+<LinearLayout
+android:gravity="center"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+>
+<ImageView
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:src="logo.png"
+></ImageView>
+
+
+
+</LinearLayout>

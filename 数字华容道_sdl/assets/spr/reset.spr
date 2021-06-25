@@ -1,0 +1,16 @@
+{
+	"file":	"spr/reset.png",
+	"w":	64,
+	"h":	64,
+	"x":	32,
+	"y":	32,
+	"action":	[{
+			"name":	"reset.png",
+			"picture":	[{
+					"pw":	64,
+					"ph":	64,
+					"px":	0,
+					"py":	0
+				}]
+		}]
+}

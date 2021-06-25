@@ -1,0 +1,40 @@
+<sprite
+ bitmap=""
+ width="32"
+ height="32"
+ 
+>
+  <action
+  name=""
+  mode="1"
+>
+  
+
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="32"
+      height="32"
+      px="0"
+      py="0"
+      />
+   </picture>
+
+
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="32"
+      height="32"
+      px="32"
+      py="0"
+      />
+   </picture>
+
+  </action>
+
+</sprite>

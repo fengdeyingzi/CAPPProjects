@@ -1,0 +1,7 @@
+LOCAL_MODULE    := c
+LOCAL_SRC_FILES := main.c
+RUN_MODE :=tc
+WINDOW_FEATURE:=FLAG_FULLSCREEN
+PACKAGE:=com.xl.mario1
+APP_NAME:=超级玛丽
+versionName:=1.0

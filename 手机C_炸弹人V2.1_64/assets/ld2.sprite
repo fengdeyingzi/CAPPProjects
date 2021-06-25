@@ -1,0 +1,353 @@
+<sprite
+ bitmap=""
+ width="40"
+ height="40"
+ 
+>
+  
+
+  
+
+  <action
+  name=""
+  >
+   <picture
+   >
+ 
+   </picture>
+</action>
+
+
+  <action
+  name=""
+  >
+   <picture
+   >
+ 
+   </picture>
+</action>
+
+
+
+  <action
+  name=""
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="-20"
+      width="40"
+      height="62"
+      px="40"
+      py="0"
+      />
+   </picture>
+</action>
+
+
+
+  <action
+  name=""
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="-20"
+      width="40"
+      height="62"
+      px="80"
+      py="0"
+      />
+   </picture>
+</action>
+
+
+
+  <action
+  name=""
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="-20"
+      width="40"
+      height="62"
+      px="120"
+      py="0"
+      />
+   </picture>
+</action>
+
+
+
+  <action
+  name=""
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="-20"
+      width="40"
+      height="62"
+      px="160"
+      py="0"
+      />
+   </picture>
+</action>
+
+
+
+  <action
+  name=""
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="-20"
+      width="40"
+      height="62"
+      px="200"
+      py="0"
+      />
+   </picture>
+</action>
+
+
+
+  <action
+  name=""
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="-20"
+      width="40"
+      height="62"
+      px="240"
+      py="0"
+      />
+   </picture>
+</action>
+
+
+
+  <action
+  name=""
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="-20"
+      width="40"
+      height="62"
+      px="280"
+      py="0"
+      />
+   </picture>
+</action>
+
+
+
+  <action
+  name=""
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="-20"
+      width="40"
+      height="62"
+      px="320"
+      py="0"
+      />
+   </picture>
+</action>
+
+
+
+  <action
+  name=""
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="-20"
+      width="40"
+      height="62"
+      px="360"
+      py="0"
+      />
+   </picture>
+</action>
+
+
+
+  <action
+  name=""
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="-20"
+      width="40"
+      height="62"
+      px="400"
+      py="0"
+      />
+   </picture>
+</action>
+
+
+
+  <action
+  name=""
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="-20"
+      width="40"
+      height="62"
+      px="440"
+      py="0"
+      />
+   </picture>
+</action>
+
+
+
+  <action
+  name=""
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="-20"
+      width="40"
+      height="62"
+      px="480"
+      py="0"
+      />
+   </picture>
+</action>
+
+
+
+  <action
+  name=""
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="-20"
+      width="40"
+      height="62"
+      px="520"
+      py="0"
+      />
+   </picture>
+</action>
+
+
+
+  <action
+  name=""
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="-20"
+      width="40"
+      height="62"
+      px="560"
+      py="0"
+      />
+   </picture>
+</action>
+
+
+
+  <action
+  name=""
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="-20"
+      width="40"
+      height="62"
+      px="600"
+      py="0"
+      />
+   </picture>
+</action>
+
+
+
+  <action
+  name=""
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="-20"
+      width="40"
+      height="62"
+      px="640"
+      py="0"
+      />
+   </picture>
+</action>
+
+
+
+  <action
+  name=""
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="-20"
+      width="40"
+      height="62"
+      px="680"
+      py="0"
+      />
+   </picture>
+
+
+  </action>
+
+</sprite>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

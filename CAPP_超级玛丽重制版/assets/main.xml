@@ -1,0 +1,8 @@
+
+<Button
+		android:id="1"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="批量utf-8编码转换"
+		android:textSize="16"
+></Button>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:background="#616161">
+
+	<LinearLayout
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:orientation="horizontal"
+		android:layout_weight="1.0">
+
+		<Button
+			android:id="@+id/btn_leftx"
+			android:layout_height="match_parent"
+			android:text="〈"
+			android:layout_width="0dp"
+			android:layout_weight="2"/>
+
+		<Button
+			android:id="@+id/btn_left"
+			android:layout_height="match_parent"
+			android:text="&lt;"
+			android:layout_width="0dp"
+			android:layout_weight="2"/>
+
+		<TextView
+			android:id="@+id/text_math"
+			android:layout_height="match_parent"
+			android:text="0"
+			android:layout_width="0dp"
+			android:gravity="center"
+			android:background="#00000000"
+			android:textColor="#009EF9"
+			android:typeface="monospace"
+			android:textStyle="bold"
+			android:inputType="number"
+			android:layout_weight="5"
+			android:textSize="18sp"/>
+
+		<Button
+			android:id="@+id/btn_right"
+			android:layout_height="match_parent"
+			android:text="&gt;"
+			android:layout_width="0dp"
+			android:layout_weight="2"/>
+
+		<Button
+			android:id="@+id/btn_rightx"
+			android:layout_height="match_parent"
+			android:text="〉"
+			android:layout_width="0dp"
+			android:layout_weight="2"/>
+
+	</LinearLayout>
+
+	<HorizontalScrollView
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:layout_weight="1.0">
+
+		<LinearLayout
+			android:id="@+id/mainLinearLayout1"
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:orientation="horizontal">
+
+			<Button
+				android:id="@+id/insert"
+				android:layout_height="wrap_content"
+				android:text="插入"
+				android:layout_width="wrap_content"/>
+
+			<Button
+				android:id="@+id/remove"
+				android:layout_height="wrap_content"
+				android:text="移除"
+				android:layout_width="wrap_content"/>
+
+			<Button
+				android:id="@+id/copy"
+				android:layout_height="wrap_content"
+				android:text="复制"
+				android:layout_width="wrap_content"/>
+
+			<Button
+				android:id="@+id/paste"
+				android:layout_height="wrap_content"
+				android:text="粘贴"
+				android:layout_width="wrap_content"/>
+
+			<Button
+				android:id="@+id/crack"
+				android:layout_height="wrap_content"
+				android:text="破解"
+				android:layout_width="wrap_content"/>
+
+			<Button
+				android:id="@+id/clear"
+				android:layout_height="wrap_content"
+				android:text="清除"
+				android:layout_width="wrap_content"/>
+
+			<Button
+				android:id="@+id/repeal"
+				android:layout_height="wrap_content"
+				android:text="撤销"
+				android:layout_width="wrap_content"/>
+
+			<Button
+				android:id="@+id/rc_chars"
+				android:layout_height="wrap_content"
+				android:text="字符集"
+				android:layout_width="wrap_content"/>
+
+		</LinearLayout>
+
+	</HorizontalScrollView>
+
+	<EditText
+		android:id="@+id/edit_rc"
+		android:layout_height="match_parent"
+		android:inputType="textMultiLine"
+		android:ems="10"
+		android:scrollbars="vertical"
+		android:layout_width="match_parent"
+		android:textColor="#00FB00"
+		android:textSize="16sp"
+		android:typeface="monospace"
+		android:layout_weight="10"
+		android:gravity="top|left"
+		android:background="#00000000"
+		android:paddingLeft="10dp"
+		android:paddingRight="10dp"/>
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:text=""
+		android:textColor="#58B3F4"
+		android:textAppearance="?android:attr/textAppearanceSmall"
+		android:layout_width="wrap_content"
+		android:layout_weight="1.0"/>
+
+</LinearLayout>

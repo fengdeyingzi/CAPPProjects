@@ -1,0 +1,662 @@
+info face="黑体" size=40 bold=0 italic=0 charset="" unicode=0 stretchH=100 smooth=1 aa=1 padding=0,0,0,0 spacing=1,1
+common lineHeight=40 base=40 scaleW=1024 scaleH=1024 pages=1 packed=0
+page id=0 file="font.atlas"
+chars count=94
+!
+  rotate: false
+  xy:0,0
+  size:10,40
+  orig:40,40
+  offset:0,0
+  index:-1
+"
+  rotate: false
+  xy:10,0
+  size:20,40
+  orig:40,40
+  offset:0,0
+  index:-1
+#
+  rotate: false
+  xy:30,0
+  size:35,40
+  orig:40,40
+  offset:0,0
+  index:-1
+$
+  rotate: false
+  xy:65,0
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+%
+  rotate: false
+  xy:90,0
+  size:30,40
+  orig:40,40
+  offset:0,0
+  index:-1
+&
+  rotate: false
+  xy:120,0
+  size:30,40
+  orig:40,40
+  offset:0,0
+  index:-1
+'
+  rotate: false
+  xy:150,0
+  size:10,40
+  orig:40,40
+  offset:0,0
+  index:-1
+(
+  rotate: false
+  xy:160,0
+  size:15,40
+  orig:40,40
+  offset:0,0
+  index:-1
+)
+  rotate: false
+  xy:175,0
+  size:15,40
+  orig:40,40
+  offset:0,0
+  index:-1
+*
+  rotate: false
+  xy:190,0
+  size:30,40
+  orig:40,40
+  offset:0,0
+  index:-1
++
+  rotate: false
+  xy:220,0
+  size:20,40
+  orig:40,40
+  offset:0,0
+  index:-1
+,
+  rotate: false
+  xy:240,0
+  size:15,40
+  orig:40,40
+  offset:0,0
+  index:-1
+-
+  rotate: false
+  xy:255,0
+  size:20,40
+  orig:40,40
+  offset:0,0
+  index:-1
+.
+  rotate: false
+  xy:275,0
+  size:10,40
+  orig:40,40
+  offset:0,0
+  index:-1
+/
+  rotate: false
+  xy:285,0
+  size:20,40
+  orig:40,40
+  offset:0,0
+  index:-1
+0
+  rotate: false
+  xy:305,0
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+1
+  rotate: false
+  xy:330,0
+  size:15,40
+  orig:40,40
+  offset:0,0
+  index:-1
+2
+  rotate: false
+  xy:345,0
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+3
+  rotate: false
+  xy:370,0
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+4
+  rotate: false
+  xy:395,0
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+5
+  rotate: false
+  xy:420,0
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+6
+  rotate: false
+  xy:445,0
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+7
+  rotate: false
+  xy:470,0
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+8
+  rotate: false
+  xy:495,0
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+9
+  rotate: false
+  xy:520,0
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+:
+  rotate: false
+  xy:545,0
+  size:10,40
+  orig:40,40
+  offset:0,0
+  index:-1
+;
+  rotate: false
+  xy:555,0
+  size:15,40
+  orig:40,40
+  offset:0,0
+  index:-1
+<
+  rotate: false
+  xy:570,0
+  size:20,40
+  orig:40,40
+  offset:0,0
+  index:-1
+=
+  rotate: false
+  xy:590,0
+  size:20,40
+  orig:40,40
+  offset:0,0
+  index:-1
+>
+  rotate: false
+  xy:610,0
+  size:20,40
+  orig:40,40
+  offset:0,0
+  index:-1
+?
+  rotate: false
+  xy:630,0
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+@
+  rotate: false
+  xy:655,0
+  size:35,40
+  orig:40,40
+  offset:0,0
+  index:-1
+A
+  rotate: false
+  xy:690,0
+  size:30,40
+  orig:40,40
+  offset:0,0
+  index:-1
+B
+  rotate: false
+  xy:720,0
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+C
+  rotate: false
+  xy:745,0
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+D
+  rotate: false
+  xy:770,0
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+E
+  rotate: false
+  xy:795,0
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+F
+  rotate: false
+  xy:820,0
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+G
+  rotate: false
+  xy:845,0
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+H
+  rotate: false
+  xy:870,0
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+I
+  rotate: false
+  xy:895,0
+  size:10,40
+  orig:40,40
+  offset:0,0
+  index:-1
+J
+  rotate: false
+  xy:905,0
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+K
+  rotate: false
+  xy:930,0
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+L
+  rotate: false
+  xy:955,0
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+M
+  rotate: false
+  xy:980,0
+  size:30,40
+  orig:40,40
+  offset:0,0
+  index:-1
+N
+  rotate: false
+  xy:0,40
+  size:30,40
+  orig:40,40
+  offset:0,0
+  index:-1
+O
+  rotate: false
+  xy:30,40
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+P
+  rotate: false
+  xy:55,40
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+Q
+  rotate: false
+  xy:80,40
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+R
+  rotate: false
+  xy:105,40
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+S
+  rotate: false
+  xy:130,40
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+T
+  rotate: false
+  xy:155,40
+  size:30,40
+  orig:40,40
+  offset:0,0
+  index:-1
+U
+  rotate: false
+  xy:185,40
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+V
+  rotate: false
+  xy:210,40
+  size:30,40
+  orig:40,40
+  offset:0,0
+  index:-1
+W
+  rotate: false
+  xy:240,40
+  size:30,40
+  orig:40,40
+  offset:0,0
+  index:-1
+X
+  rotate: false
+  xy:270,40
+  size:30,40
+  orig:40,40
+  offset:0,0
+  index:-1
+Y
+  rotate: false
+  xy:300,40
+  size:30,40
+  orig:40,40
+  offset:0,0
+  index:-1
+Z
+  rotate: false
+  xy:330,40
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+[
+  rotate: false
+  xy:355,40
+  size:15,40
+  orig:40,40
+  offset:0,0
+  index:-1
+^
+  rotate: false
+  xy:370,40
+  size:20,40
+  orig:40,40
+  offset:0,0
+  index:-1
+_
+  rotate: false
+  xy:390,40
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+`
+  rotate: false
+  xy:415,40
+  size:20,40
+  orig:40,40
+  offset:0,0
+  index:-1
+a
+  rotate: false
+  xy:435,40
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+b
+  rotate: false
+  xy:460,40
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+c
+  rotate: false
+  xy:485,40
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+d
+  rotate: false
+  xy:510,40
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+e
+  rotate: false
+  xy:535,40
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+f
+  rotate: false
+  xy:560,40
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+g
+  rotate: false
+  xy:585,40
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+h
+  rotate: false
+  xy:610,40
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+i
+  rotate: false
+  xy:635,40
+  size:15,40
+  orig:40,40
+  offset:0,0
+  index:-1
+j
+  rotate: false
+  xy:650,40
+  size:20,40
+  orig:40,40
+  offset:0,0
+  index:-1
+k
+  rotate: false
+  xy:670,40
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+l
+  rotate: false
+  xy:695,40
+  size:20,40
+  orig:40,40
+  offset:0,0
+  index:-1
+m
+  rotate: false
+  xy:715,40
+  size:30,40
+  orig:40,40
+  offset:0,0
+  index:-1
+n
+  rotate: false
+  xy:745,40
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+o
+  rotate: false
+  xy:770,40
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+p
+  rotate: false
+  xy:795,40
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+q
+  rotate: false
+  xy:820,40
+  size:30,40
+  orig:40,40
+  offset:0,0
+  index:-1
+r
+  rotate: false
+  xy:850,40
+  size:20,40
+  orig:40,40
+  offset:0,0
+  index:-1
+s
+  rotate: false
+  xy:870,40
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+t
+  rotate: false
+  xy:895,40
+  size:20,40
+  orig:40,40
+  offset:0,0
+  index:-1
+u
+  rotate: false
+  xy:915,40
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+v
+  rotate: false
+  xy:940,40
+  size:30,40
+  orig:40,40
+  offset:0,0
+  index:-1
+w
+  rotate: false
+  xy:970,40
+  size:30,40
+  orig:40,40
+  offset:0,0
+  index:-1
+x
+  rotate: false
+  xy:0,80
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+y
+  rotate: false
+  xy:25,80
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+z
+  rotate: false
+  xy:50,80
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+{
+  rotate: false
+  xy:75,80
+  size:20,40
+  orig:40,40
+  offset:0,0
+  index:-1
+|
+  rotate: false
+  xy:95,80
+  size:10,40
+  orig:40,40
+  offset:0,0
+  index:-1
+}
+  rotate: false
+  xy:105,80
+  size:20,40
+  orig:40,40
+  offset:0,0
+  index:-1
+~
+  rotate: false
+  xy:125,80
+  size:25,40
+  orig:40,40
+  offset:0,0
+  index:-1
+垃
+  rotate: false
+  xy:150,80
+  size:40,40
+  orig:40,40
+  offset:0,0
+  index:-1
+圾
+  rotate: false
+  xy:190,80
+  size:40,40
+  orig:40,40
+  offset:0,0
+  index:-1

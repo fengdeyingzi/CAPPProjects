@@ -1,0 +1,140 @@
+<sprite
+ bitmap=""
+ width="140"
+ height="42"
+ 
+>
+  <action
+  name=""
+  >
+
+
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="140"
+      height="42"
+      px="0"
+      py="0"
+      />
+   </picture>
+
+  </action>
+
+  <action
+  name=""
+  >
+
+
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="140"
+      height="42"
+      px="0"
+      py="43"
+      />
+   </picture>
+
+  </action>
+
+  <action
+  name=""
+  >
+
+
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="140"
+      height="42"
+      px="0"
+      py="86"
+      />
+   </picture>
+
+  </action>
+
+  <action
+  name=""
+  >
+
+
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="140"
+      height="42"
+      px="0"
+      py="129"
+      />
+   </picture>
+
+  </action>
+
+  <action
+  name=""
+  >
+
+
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="140"
+      height="42"
+      px="0"
+      py="172"
+      />
+   </picture>
+
+  </action>
+
+  <action
+  name=""
+  >
+
+
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="140"
+      height="42"
+      px="0"
+      py="215"
+      />
+   </picture>
+
+  </action>
+
+  <action
+  name=""
+  >
+
+
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="140"
+      height="42"
+      px="0"
+      py="258"
+      />
+   </picture>
+
+  </action>
+
+</sprite>

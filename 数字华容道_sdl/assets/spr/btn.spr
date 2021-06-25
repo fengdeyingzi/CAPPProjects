@@ -1,0 +1,16 @@
+{
+	"file":	"spr/btn.png",
+	"w":	200,
+	"h":	100,
+	"x":	100,
+	"y":	50,
+	"action":	[{
+			"name":	"reset.png",
+			"picture":	[{
+					"pw":	200,
+					"ph":	100,
+					"px":	0,
+					"py":	0
+				}]
+		}]
+}

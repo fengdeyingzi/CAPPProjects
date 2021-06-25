@@ -1,0 +1,13 @@
+1.SeekBar控件的使用
+
+1.1SeekBar常用属性　　
+SeekBar的常用属性有以下一些：
+
+android:max="100"//设置拖动条的最大值
+android:progress="50"//设置当前的进度值
+
+android:secondaryProgress[integer]//设置第二进度，通常用做显示视频等的缓冲效果
+
+android:thumb[drawable]//设置滑块的图样
+
+android:progressDrawable[drawable]//设置进度条的图样

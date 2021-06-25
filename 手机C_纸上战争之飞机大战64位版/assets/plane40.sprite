@@ -1,0 +1,15 @@
+setBitmap plane40.png
+setPrectSize 3
+setPicSize 2
+setWH 228,112
+setPrect 0,0,0,228,112
+setPrect 1,0,120,50,24
+setPrect 2,50,120,50,24
+setPicPrectSize 0,2
+setPicPrectSize 1,2
+addPicPrect 0,0,0,0
+addPicPrect 0,1,89,87
+addPicPrect 1,0,0,0
+addPicPrect 1,2,89,87
+
+

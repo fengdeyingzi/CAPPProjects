@@ -1,0 +1,520 @@
+<sprite
+ bitmap=""
+ width="20"
+ height="20"
+ 
+>
+
+ <action
+  name="0"
+  >
+  <picture
+  >
+  </picture>
+  </action>
+ 
+   <action
+  name="1"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="0"
+      py="0"
+      />
+   </picture>
+
+  </action>
+
+
+  <action
+  name="2"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="20"
+      py="0"
+      />
+   </picture>
+
+  </action>
+
+
+  <action
+  name="3"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="40"
+      py="0"
+      />
+   </picture>
+
+  </action>
+
+
+  <action
+  name="4"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="60"
+      py="0"
+      />
+   </picture>
+
+  </action>
+
+
+  <action
+  name="5"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="80"
+      py="0"
+      />
+   </picture>
+
+  </action>
+
+
+  <action
+  name="6"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="100"
+      py="0"
+      />
+   </picture>
+
+  </action>
+
+
+  <action
+  name="7"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="120"
+      py="0"
+      />
+   </picture>
+
+  </action>
+
+
+  <action
+  name="8"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="0"
+      py="20"
+      />
+   </picture>
+
+  </action>
+
+
+  <action
+  name="9"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="20"
+      py="20"
+      />
+   </picture>
+
+  </action>
+
+
+  <action
+  name="10"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="40"
+      py="20"
+      />
+   </picture>
+
+  </action>
+
+
+  <action
+  name="11"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="60"
+      py="20"
+      />
+   </picture>
+
+  </action>
+
+
+  <action
+  name="12"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="80"
+      py="20"
+      />
+   </picture>
+
+  </action>
+
+
+  <action
+  name="13"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="100"
+      py="20"
+      />
+   </picture>
+
+  </action>
+
+
+  <action
+  name="14"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="120"
+      py="20"
+      />
+   </picture>
+
+  </action>
+
+
+  <action
+  name="15"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="0"
+      py="40"
+      />
+   </picture>
+
+  </action>
+
+
+  <action
+  name="16"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="20"
+      py="40"
+      />
+   </picture>
+
+  </action>
+
+
+  <action
+  name="17"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="40"
+      py="40"
+      />
+   </picture>
+
+  </action>
+
+
+  <action
+  name="18"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="60"
+      py="40"
+      />
+   </picture>
+
+  </action>
+
+
+  <action
+  name="19"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="80"
+      py="40"
+      />
+   </picture>
+
+  </action>
+
+
+  <action
+  name="20"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="100"
+      py="40"
+      />
+   </picture>
+
+  </action>
+
+
+  <action
+  name="21"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="120"
+      py="40"
+      />
+   </picture>
+
+  </action>
+
+
+  <action
+  name="22"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="0"
+      py="60"
+      />
+   </picture>
+
+  </action>
+
+
+  <action
+  name="23"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="20"
+      py="60"
+      />
+   </picture>
+
+  </action>
+
+
+  <action
+  name="24"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="40"
+      py="60"
+      />
+   </picture>
+
+  </action>
+
+
+  <action
+  name="25"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="60"
+      py="60"
+      />
+   </picture>
+
+  </action>
+
+
+  <action
+  name="26"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="80"
+      py="60"
+      />
+   </picture>
+
+  </action>
+
+
+  <action
+  name="27"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="100"
+      py="60"
+      />
+   </picture>
+
+  </action>
+
+
+  <action
+  name="28"
+  >
+   <picture
+   >
+      <rectflip
+      x="0"
+      y="0"
+      width="20"
+      height="20"
+      px="120"
+      py="60"
+      />
+   </picture>
+
+  </action>
+
+
+</sprite>

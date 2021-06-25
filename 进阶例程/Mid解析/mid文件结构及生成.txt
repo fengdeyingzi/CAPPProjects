@@ -1,0 +1,822 @@
+从网上找的，已经将用BC写的改成了VC的，由于对音乐的理解比乐盲还差，对于程序中转换是否有问题我也不得而知，反正用VC生成的MIDI文件听起来惨不忍睹。
+
+　对于制作MIDI音乐来说，比播放MIDI文件本身更复杂得多。我们得了解一些乐理常识和MIDI文件结构。
+
+一、MIDI文件结构分析 　　MIDI文件包含首部块（Header Chunk）和音轨块（Track Chunk）两部分。其格式一般如下：
+
+　　MThd ＜数据长度＞ ＜Header数据＞    //首部块
+　　.......
+　　Mtrk ＜数据长度＞ ＜Track数据＞     //音轨块
+　　Header Chunk 结构为:
+　　char MidiId[4];
+　　long length;
+　　int  foarmt;
+　　int  TrackNum;
+　　int  division;
+
+其中：
+
+　　MidiId称为MIDI文件头标志，一般将其设置为MThd；
+
+　　length为文件首部数据长度（除它本身和文件头标志占用的字节以外），通常它设置为6，即format,TrackNum和division共占用的字节数据长度；
+
+　　format表示MIDI文件存放的格式，当前只有３种格式：
+
+　　0 表示MIDI文件只有一个Track Chunk；
+　　1 表示MIDI文件只有一个或多个Track Chunk；
+　　2 表示MIDI文件只有一个或多个各处独立的Track Chunk。
+　　division指定计数的方法，一种随时间计数（最高位设置为０时），另一种使用制式的时间码（最高位设置为１时）。这里，主要介绍随时间计数的一种格式。其各位意义如下：
+
+　　┌─┬─────────┐
+　　│0│ 每一拍的计数值│
+　　└─┴─────────┘
+　　b15     b14 ￣ b0
+
+　　其最高位一定要设置为0，其它的15位表示每一拍的计数值。如该数据为９６（以八分音符为一拍），则表示一个四分音符延时数应该为192。
+
+　　另外，在MIDI文件中，long和int型数据均将高字节值存放入低地址上，如一个long型数据为0x45678，则在文件中，存放的结果为：0x00,0x04,0x56,0x78。而在内存中，int,long的变量值通常将崐高字节值存放高地址上。因此，存放数据时，应该作一下调整。
+
+　　Track Chunk为用来播放歌曲的数据信息。每一个Track Chunk是一组简单的MIDI码（包括一些非MIDI码）的集合。它又由头部信息和崐若干个Mtrk event组合而成。
+
+　　头部结构和意义为：
+
+　　char TrackChunkId[4];      //Track Chunk标志MTrk
+　　long TrackChunkMsgLength;  //该Track Chunk信息长度
+
+　　而Mtrk event是由时间计数值（dela-time）和event（MIDI码信崐息）组合成的。即：
+
+　　＜Mtrk event＞=＜dela-time＞ ＜event＞
+
+　　＜dela-time＞使用可变长度的形式存储数据，它代表处理event之前要计数时间值。 它在音乐中，即表示拍数。通常音乐开始演奏时，总是将计数时间值设置为0。为了能连续处理两个event，我们可以将deta-time设置为0。如：3和5同时演奏2拍（每一拍计数值为24），可以设置如下：
+
+　　deta-time    event
+　　0         开始演奏３
+　　0         开始演奏５
+　　48        停止３演奏
+　　0         停止5演奏
+
+　　event表示MIDI码信息集，如0x9n表示开始发音，0x8n表示关闭发音等等（下有说明）。
+
+　　上述的dela-time使用可变长度的形式表示数据值。可变长度形式是MIDI文件中对于大于８位的数据打用的一种存储方式，它把每一个数据定义为７位，剩下的最高位作为数据长度的识别。当这一位为0时，表示数据是最后一个，若为１，则表示还有下一个。
+
+　　如：数值0x3fff，可变长度形式便为0xff,0x7f；0x4000则应该为0x81,0x80,0x00。此数据的转换可以参阅WriteLenghtToBuf()函数。
+
+二、常见MIDI码说明
+
+　　MIDI码是制定音乐交换的信息码，它使用串行非同步传送，因此数据码是用多码形式。第一个MIDI码是状态码，剩余的都是数据码，其长度视状态而定。
+
+　　以下是一些常见的MIDI码。
+
+　　１、开始发音（0x9n）
+
+　　格式为：0x9n note speed
+
+　　它一共占用３个字节，n表示通道号，取值0-15。MIDI可以同时演奏16个通道，用此指定在哪一个通道上发音（以下n相同）。
+
+　　note表示音高数值，即音阶码值。如C4（中音１）为60，它的取值在0xc和0x6c之间（具体码值，可参考「参考书籍１」）。
+
+　　speed表示按键时的速度，用此表示音的力度。若没有力度感，可以将其设置为64，若为0，表示关闭发音。
+
+　　如：在第２通道上开始演奏３，则MIDI码便为0x91,63,40。
+
+　　MIDI规范还规定，若连续向同一通道上发送多个音，则可以不指出状态码。如上述同时演奏３，５，MIDI码便为：0x91,63,40,65,40。
+
+　　２、关闭发音（0x8n）。
+
+　　格式：0x8n note speed
+
+　　说明同上。通常它用0x9n,note,0来代替。
+
+　　３、切换音色（0xcn）。
+
+　　格式：0xcn,program
+
+　　program表示音色代码，０￣255之间，如Acou Piano 1（电钢１值为０），Synth Bass 1（电贝司１值为６４）等（详见「参考书籍１」）。
+
+　　４、设置音量大小
+
+　　格式：0xbn ,07,size
+
+　　0xbn,39,size
+
+　　7,表示设置主音量的高字节值；39表示设置主音量的低字节值。
+
+　　５、设置时间记号
+
+　　格式：0xff 0x58 04 nn dd cc bb
+
+　　nn和dd直接对应到谱号的数字，dd使用2的指数。如3/8,则nn=3,dd=3。cc是代表第次节拍器打后的时间是几个MIDI clock。bb通常设置为8表示多少个MIDI clock等于1/4 拍。
+
+　　６、设置演奏速度
+
+　　格式：0xff 0x51 03 tt tt tt
+
+　　tt tt tt 表示第一拍定义多少个Miscro Seconds。它即是用来崐变演奏的速度。
+
+　　７、写歌词
+
+　　格式：0xff 0x05 len text
+
+　　len表示歌词的长度，text表示歌词文本码。
+
+　　８、磁道结束
+
+　　格式：0xff,0x2f,00
+
+　　它表示结束点。每外track chunk后都应该有此MIDI码。
+
+三、MIDI信息文本文件制作
+
+　　为了能制成符合规范的MIDI文件，我们在此规定MIDI信息文本制作格式如下：
+
+　　[MIDI]
+　　＜调号＞,＜节拍＞,＜每分钟节拍数＞,＜音轨个数＞
+　　[1]
+　　.....
+　　[n]
+　　....
+
+　　说明：
+
+　　１、调号，占用一个字符，必须为A、B、C、D、E、F、G，否则视为C调；
+
+　　２、节拍，取值如下：2/4，3/4，4/4，3/8，6/8....等。
+
+　　３、每分钟节拍数：表示每分钟演奏的节拍总数，取值在40-200崐之间，否则视为120。
+
+　　４、音轨个数表示此歌曲声部数。如三声部，可将其设置为3。
+
+　　５、[n]后表示此音轨的音乐信息。有如下说明字符组合而成。
+
+音高：
+
+　　高音 C  D   E   F   G   A   B
+　　中音 1  2   3   4   5   6   7
+　　低音 c  d   e   f   g   a   b
+
+　　若某音升半音，则在其后加#号；降半音，在其后加b字符。
+
+　　音长： -（延长四分音符的一拍）、_（８分音符，后可带符点）、=（１６分音符，后可带符点）、.（附点音符，后不可带符点）、:（３２分音符，后可带符点）、;（６４分音符，后不可带符点）。
+
+　　说明：在书写时，请先写完整的音高，再写音长，如简谱中的"３－"，则应该为"3#-"。
+
+　　Pn：表示设置音色，取值１－２５６之间。
+　　{}：歌词或注释。
+　　|： 表示小节分隔符。
+　　/： 后继音均降八度
+　　/： 后继音均升八度
+　　Sn：音量大小，n数值越大，音量越大。
+　　其它的字符，视为非法字符。
+
+　　以下为歌曲＜解放军的天＞片断MIDI文本文件。
+
+　　[MIDI]
+
+
+　　F,2/4,150,2
+
+
+　　[1]
+
+
+　　P53
+
+
+　　/3=3=3=2= 3_.2=  | 1_1=e= g | 3=3=3=2= 3_3=2= | 1_1=e=  g |
+
+
+　　/6_. 5=  6_.5=  | 6_C_ 3_5_| 6=6=6=6= 6_6_   | 5=6=C_ C_3_|
+
+
+　　2_.3=   5_C_    | 6=5=3_ 5   | 6_. / 1= 2_.1=| 2_0_ 3_.2= |
+
+
+　　1_0_ 2_2_    |  /5_.6=  /1_3_ | 3=1=a_ 1 / |
+
+
+　　[2]
+
+
+　　P53  /
+
+
+　　1_C_ 5_G_ |  1_c_ 5_G_ | 1_C_ 5_G_ |  1_c_ 5_G_ |
+
+
+　　a_6_ 4_6_ | 1_5_ 3_ 5_ | a_6_ 4_6_ | 1_5_ 3_ 5_ |
+
+
+　　1_3_ 5_1_ | 1_6_ 4_6_ | 2_5_ 1_5_ | g_5_ 1_5_ |
+
+
+　　1_5_ 3_5_  | 1_6_ 4_6_| 3_2_ 1    |
+
+
+四、程序实现  
+
+　　以下为MIDI文件生成的全部源程序，经Borland C++3.1编译、连接通过。
+
+#include ＜stdlib.h＞
+　　#include ＜stdio.h＞
+　　#include ＜io.h＞
+　　#include ＜string.h＞
+　　#define C1 60 //C调1的键名值
+　　#define FOURPAINUM 64 //1/4音符计数
+　　#define MIDICLOCK 24 //每1/64音符的MIDICLOCK数
+　　#define JumpNullChar(x) / //跳过空字符
+　　 { /
+　　 while(*x==' ' /
+　　 ||*x=='/t' /
+　　 ||*x=='/n' /
+　　 ||*x=='|') /
+　　 x++; /
+　　 };
+　　enum ERRORCODE{ //处理错误信息
+　　 ChangeOK, //转换成功
+　　 TextFileNotOpen, //文本文件不能打开
+　　 MidiFileCanNotCreate, //指定的MIDI文件不能建立
+　　 TextFileToBig, //文本文件太大
+　　 MallocError, //内存分配错误
+　　 InvalideChar, //在文本文件中出现了非法字符
+　　 NotFoundTrack, //没有找到指定的磁道信息
+　　 NotMIDITextFile, //文本文件不是MIDI文本文件
+　　 };
+　　void SWAP(char *x,char *y) //两数据交换
+　　{ char i;
+　　 i=*x;
+　　 *x=*y;
+　　 *y=i;
+　　}
+　　union LENGHT
+　　{ long length;
+　　char b[4];
+　　} ;
+　　struct MH { //MIDI文件头
+　　char MidiId[4]; //MIDI文件标志MThd
+　　long length; //头部信息长度
+　　int format; //存放的格式
+　　int ntracks; //磁道数目
+　　int PerPaiNum; //每节计算器值
+　　};
+　　struct TH //音轨头
+　　{ char TrackId[4]; //磁道标志MTrk
+　　 long length; //信息长度
+　　} ;
+　　class MIDI
+　　{
+　　public:
+　　char ErrorMsg[100]; //错误信息
+　　private:
+　　unsigned char *TextFileBuf,
+　　 *TextFileOldBuf;
+　　unsigned char *MidiFileBuf,
+　　 *MidiFileOldBuf;
+　　char OneVal; //某调时,1的健值
+　　char PaiNum; //第一小节节拍总数
+　　char OnePaiToneNum; //用几分音符作为一基本拍
+　　public:
+　　//将符全MIDI书定格式的文本文件生成MIDI文件
+　　int ChangeTextToMidi(char *TextFileName,
+　　 char *MidiFileName);
+　　char *GetErrorMsg() //获取错误信息
+　　 { return(ErrorMsg);}
+　　private:
+　　char GetCurPaiSpeed(int n); //取当前拍的按下强度
+　　void WriteSoundSize(char ntrack,unsigned int );
+　　void SetOnePaiToneNum(int n)
+　　 { OnePaiToneNum=n; };
+　　void SetOneVal(char *m) ; //取m大调或小调时,1的实际键值
+　　char GetToneNum(char c, //取记名对应的键值
+　　 char flag) ;
+　　void WriteMHToFile(long length, //建立MIDI文件头
+　　 int format,
+　　 int ntracks,
+　　 int PerPaiNum,
+　　 FILE *fp);
+　　void WriteTHToFile(long lenght,
+　　 FILE *fp); //建立MIDI磁道头
+　　void WriteTrackMsgToFile(FILE *fp);
+　　//将磁道音乐信息定入文件中
+　　void WriteSpeed(int speed);
+　　void SetPaiNum(int n)
+　　 { PaiNum=n;}
+　　long NewLong(long n); //新的long值
+　　int NewInt(int n) //新的int值
+　　 { return(n＜＜8|n＞＞8);}
+　　//将n改为可变长度,内入buf处
+　　void WriteLenghtToBuf(unsigned long n,
+　　 char *buf);
+　　void ChangePrommgram(char channel, //设置音色
+　　 char promgram);
+　　void NoteOn (char n, //演奏乐音
+　　 char speed,
+　　 unsigned long delaytime);
+　　void WriteNoteOn(char,char,char ,unsigned long) ;
+　　void WriteTextMsg(char *msg); //定一串文本信息
+　　void WriteTimeSignature(char n, //设置时间信息
+　　 char d);
+　　void WriteTrackEndMsg(); //设置磁道结束信息
+　　};
+
+　/**************************************************
+　　/* 作用:将符合MIDI文本文件的text文件转换成MIDI */
+　　/* 文件. */
+　　/* 入口参数:TextFileName 文本文件名 */
+　　/* MidiFileName MIDI文件名 */
+　　/* 出口参数:见 ERRORCODE 说明 */
+　　/*************************************************/
+　　int MIDI::ChangeTextToMidi(char *TextFileName,
+　　char *MidiFileName)
+　　{ int tracks,ntrack,delaytime;
+　　int speed,IsFirst,nn,dd;
+　　unsigned char buf[80],*msgbuf,c;
+　　FILE *TextFp,*MidiFp;
+　　long FileSize;
+　　char SpeedVal;
+　　TextFp=fopen(TextFileName,"r");
+　　if (TextFp==NULL)
+　　{sprintf(ErrorMsg,
+　　"文本文件[%s]不能打开。/n",TextFileName);
+　　 return(TextFileNotOpen);
+　　 }
+　　fseek(TextFp,0,SEEK_END); /*测试文件大小*/
+　　FileSize=ftell(TextFp);
+　　TextFileBuf=(char *)malloc(FileSize);/*为文件分配内存*/
+　　if (TextFileBuf==NULL)
+　　{ sprintf(ErrorMsg,
+　　"文本文件[%s]太大，没有足够的内存处理。/n",
+　　TextFileName);
+　　 fclose(TextFp);
+　　 return(TextFileToBig);
+　　}
+　　memset(TextFileBuf,0,FileSize);
+　　MidiFileBuf=(char *) malloc(FileSize*4);
+　　if ( MidiFileBuf==NULL)
+　　{ sprintf(ErrorMsg,"不能为MIDI文件分配内存。/n");
+　　fclose(TextFp);
+　　free(TextFileBuf);
+　　return(MallocError);
+　　}
+　　MidiFp=fopen(MidiFileName,"wb");
+　　if (MidiFp==NULL)
+　　 { sprintf(ErrorMsg,
+　　"Midi文件[%s]不能建立。/n",MidiFileName);
+　　 fclose(TextFp);
+　　 free(MidiFileBuf);
+　　 free(TextFileBuf);
+　　 return(MidiFileCanNotCreate);
+　　 }
+　　MidiFileOldBuf=MidiFileBuf;
+　　TextFileOldBuf=TextFileBuf;
+　　fseek(TextFp,0,SEEK_SET);
+　　fread(TextFileBuf,FileSize,1,TextFp);
+　　fclose(TextFp);
+　　JumpNullChar(TextFileBuf);
+　　c=strnicmp(TextFileBuf,"[MIDI]",6);
+　　if (c)
+　　{sprintf(ErrorMsg,
+　　"文本文件[%s]不是MIDI文本文件。/n",MidiFileName);
+　　fcloseall();
+　　free(TextFileOldBuf);
+　　free(MidiFileOldBuf);
+　　return(NotMIDITextFile);
+　　}
+　　TextFileBuf+=6;
+　　JumpNullChar(TextFileBuf);
+　　sscanf(TextFileBuf,"%c,%d/%d,%d,%d", //取调号等信息
+　　c,nn,dd,speed,tracks);
+　　buf[0]=c;buf[1]=0; SetOneVal(buf); //设置该调1的键值
+　　if (nn＜1 || nn＞ 7) nn=4;
+　　if (dd＜2 || dd＞16) dd=4;
+　　while(*TextFileBuf!='/n') TextFileBuf++;
+　　JumpNullChar(TextFileBuf);
+　　if (speed＜60 || speed ＞200) speed=120;
+　　JumpNullChar(TextFileBuf);
+　　if (tracks＜1 || tracks＞16) tracks=1;
+　　JumpNullChar(TextFileBuf);
+　　ntrack=1;
+　　WriteMHToFile(6,1,tracks,speed,MidiFp);
+　　WriteTimeSignature(nn,dd); //设置时间记录格式
+　　SetPaiNum(nn);
+　　WriteSpeed(speed); //设置演奏速度
+　　while(ntrack＜=tracks *TextFileBuf!=0)
+　　{sprintf(buf,"[%d]",ntrack);
+　　TextFileBuf=strstr(TextFileBuf,buf);//查找该磁道起始位置
+　　if (TextFileBuf==NULL) //没有找到
+　　{ sprintf(ErrorMsg,
+　　"在文件[%s]中，第%d磁道音乐信息没找到。/n.",
+　　 TextFileName,ntrack);
+　　 free(MidiFileOldBuf);
+　　 free(TextFileOldBuf);
+　　 fcloseall();
+　　 return(NotFoundTrack);
+　　}
+　　if (ntrack!=1) MidiFileBuf=MidiFileOldBuf;
+　　SpeedVal=0;
+　　TextFileBuf+=strlen(buf);
+　　IsFirst=1;
+　　while(*TextFileBuf!=0 *TextFileBuf!='[')
+　　{ JumpNullChar(TextFileBuf);
+　　c=*(TextFileBuf++);
+　　if ( (c＞='0' c＜='7')
+　　|| (c＞='a' c＜='g')
+　　|| (c＞='A' c＜='G')
+　　)
+　　{JumpNullChar(TextFileBuf);
+　　 if (*TextFileBuf=='b' || *TextFileBuf=='#')
+　　 { c=GetToneNum(c,*TextFileBuf);/*取出实际的音符*/
+　　 TextFileBuf++;
+　　 JumpNullChar(TextFileBuf);
+　　 }
+　　 else c=GetToneNum(c,' ');
+　　switch(*(TextFileBuf++))
+　　 { case '-': //延长一拍
+　　 delaytime=2*FOURPAINUM;
+　　 JumpNullChar(TextFileBuf);
+　　 while(*TextFileBuf=='-')
+　　 { TextFileBuf++;
+　　 delaytime+=FOURPAINUM;
+　　 JumpNullChar(TextFileBuf);
+　　 }
+　　 break;
+　　 case '_': //8分音符
+　　 delaytime=FOURPAINUM/2;
+　　 JumpNullChar(TextFileBuf);
+　　 if(*TextFileBuf=='.')
+　　 {TextFileBuf++;
+　　 delaytime=delaytime*3/2;
+　　 }
+　　 break;
+　　 case '=': //16分音符
+　　 delaytime=FOURPAINUM/4;
+　　 JumpNullChar(TextFileBuf);
+　　 if(*TextFileBuf=='.')
+　　 {delaytime=delaytime*3/2;
+　　 TextFileBuf++;}
+　　 break;
+　　 case '.': //附点音符
+　　 delaytime=FOURPAINUM*3/2;
+　　 break;
+　　 case ':': //32分音符
+　　 delaytime=FOURPAINUM/16;
+　　 JumpNullChar(TextFileBuf);
+　　 if(*TextFileBuf=='.')
+　　 {delaytime=delaytime*3/2;
+　　 TextFileBuf++;}
+　　 break;
+　　 case ';': //64分音符
+　　 delaytime=FOURPAINUM/32;
+　　 if(*TextFileBuf=='.')
+　　 { delaytime=delaytime*3/2;
+　　 TextFileBuf++;}
+　　 break;
+　　 default:
+　　 delaytime=FOURPAINUM;
+　　 TextFileBuf--;
+　　 break;
+　　 }
+
+　　 if (IsFirst)
+　　 {WriteNoteOn(ntrack,c,
+　　GetCurPaiSpeed(SpeedVal/(FOURPAINUM*4/dd)+1),
+　　delaytime);
+　　 IsFirst=0;}
+　　 else
+　　 NoteOn(c,
+　　GetCurPaiSpeed(SpeedVal/(FOURPAINUM*4/dd)+1),
+　　delaytime);
+　　 SpeedVal=(SpeedVal+delaytime) //下一音符所处的节拍
+　　%(PaiNum*FOURPAINUM*4/dd);
+　　}
+　　else
+　　{switch(c)
+　　{ case 'S':
+　　case 's':
+　　case 'p':
+　　case 'P': /*设置音色*/
+　　 sscanf(TextFileBuf,"%d",IsFirst);
+　　 while(*TextFileBuf＞='0' *TextFileBuf＜='9')
+　　TextFileBuf++;
+　　if (c=='P'||c=='p') //若为P,表示改变音色
+　　 ChangePrommgram(ntrack,(char)IsFirst);
+　　 else //否则,表示设置音量大小
+　　 WriteSoundSize(ntrack,(unsigned int)IsFirst);
+　　 IsFirst=1;
+　　 break;
+　　case '{': /*写歌词*/
+　　 msgbuf=buf;
+　　 while(*TextFileBuf!='}'
+　　 *TextFileBuf!='/n'
+　　 *TextFileBuf!=0
+　　 *TextFileBuf!='[')
+　　 *(msgbuf++)=*(TextFileBuf++);
+　　 *msgbuf=0;
+　　 IsFirst=1;
+　　 WriteTextMsg(buf);
+　　 if (*TextFileBuf=='}') TextFileBuf++;
+　　 break;
+　　case '//': //降八度
+　　 OneVal-=12;
+　　 break;
+　　case '/': //升八度
+　　 OneVal+=12;
+　　 break;
+　　case '[':
+　　case 0:
+　　 TextFileBuf--;
+　　 break;
+　　default:
+　　 sprintf(ErrorMsg,"文本文件[%s]出现非法字符(%c)。",
+　　 TextFileName,c);
+　　 free(MidiFileOldBuf);
+　　 free(TextFileOldBuf);
+　　 fcloseall();
+　　 return(InvalideChar);
+　　 }
+　　}
+　　}
+　　WriteTrackEndMsg(); //设置磁道结束信息
+　　WriteTrackMsgToFile(MidiFp); //将磁道音乐信息定入文件中
+　　ntrack++;
+　　}
+　　free(MidiFileOldBuf);
+　　free(TextFileOldBuf);
+　　fclose(MidiFp);
+　　sprintf(ErrorMsg,"MIDI文件[%s]转换成功。",MidiFileName);
+　　return(ChangeOK);
+　　}
+　/*****************************************************/
+　　/*作用：将长整型数据变成可变长度，存入buf处 */
+　　/*入口参数：n 数据 buf 结果保存入 */
+　　/****************************************************/
+　　void MIDI::WriteLenghtToBuf(unsigned long n,char *buf)
+　　{ unsigned char b[4]={0};
+　　int i;
+　　b[3]=(unsigned char)(n0x7f);
+　　i=2;
+　　while(n＞＞7)
+　　{ n＞＞=7;
+　　 b[i--]=(char)( (n0x7f)|0x80);
+　　 }
+　　for (i=0;i＜4;i++)
+　　if (b[i]) *(buf++)=b[i];
+　　*buf=0;
+　　}
+　　long MIDI::NewLong(long n) //将长整型数据改成高位在前
+　　{ union LENGHT l={0};
+　　char i;
+　　l.length=n;
+　　SWAP(l.b[3],l.b[0]);
+　　SWAP(l.b[2],l.b[1]);
+　　return(l.length);
+　　}
+　　//开始演奏音乐
+　　void MIDI::WriteNoteOn(char channel, //通道号
+　　char note, //音符值
+　　char speed, //按键速度
+　　unsigned long delaytime) //延时数
+　　{ unsigned char buf[5];
+　　int i;
+　　channel--;
+　　*(MidiFileBuf++)=0;
+　　*(MidiFileBuf++)=0x90|channel0x7f;//Write Channel
+　　*(MidiFileBuf++)=note;
+　　*(MidiFileBuf++)=speed;
+　　WriteLenghtToBuf(delaytime*MIDICLOCK,buf);
+　　i=0;
+　　while(buf[i]＞=0x80) //Write Delay Time
+　　 *(MidiFileBuf++)=buf[i++];
+　　*(MidiFileBuf++)=buf[i];
+　　*(MidiFileBuf++)=note;
+　　*(MidiFileBuf++)=0;
+　　}
+　　void MIDI::NoteOn(char note,
+　　char speed,
+　　unsigned long delaytime) //发音
+　　{ unsigned char buf[5];
+　　int i;
+　　*(MidiFileBuf++)=0;
+　　*(MidiFileBuf++)=note;
+　　*(MidiFileBuf++)=speed;
+　　WriteLenghtToBuf(delaytime*MIDICLOCK,buf);
+　　i=0;
+　　while(buf[i]＞0x80)
+　　 *(MidiFileBuf++)=buf[i++];
+　　*(MidiFileBuf++)=buf[i];
+　　*(MidiFileBuf++)=note;
+　　*(MidiFileBuf++)=0;
+　　}
+　　void MIDI::ChangePrommgram(char channel,char n) //改变音色
+　　{ *(MidiFileBuf++)=0;
+　　*(MidiFileBuf++)=0xc0|(channel-1)0x7f;
+　　*(MidiFileBuf++)=n;
+　　}
+　　void MIDI::WriteTextMsg(char *msg) //向内存写入一文本信息
+　　{ char bufmsg[100]={0xff,5,0,0,0};
+　　int len;
+　　*(MidiFileBuf++)=0;
+　　bufmsg[2]=(char)strlen(msg);
+　　strcpy(bufmsg[3],msg);
+　　strcpy(MidiFileBuf,bufmsg);
+　　MidiFileBuf+=strlen(bufmsg)+3;
+　　}
+　　void MIDI::WriteTrackEndMsg() //磁道结束信息
+　　{ *(MidiFileBuf++)=0;
+　　*(MidiFileBuf++)=0xff;
+　　*(MidiFileBuf++)=0x2f;
+　　*(MidiFileBuf++)=0;
+　　}
+　　char MIDI::GetToneNum(char n,char flag)
+　　/*入口参数： n 音高
+　　 flag 升降记号
+　　返回值： 该乐音的实际标号值*/
+　　{ static char val[7]={9 ,11,0,2,4,5,7};
+　　static char one[7]={0,2,4,5,7,9,11};
+　　int i;
+　　i=OneVal;
+　　if (n＜='7' n＞='1') i=i+one[n-'1'];
+　　else
+　　 if (n＞='a' n＜='g')
+　　i=i+val[n-'a']-12; //低音，降12个半音
+　　 else
+　　 if (n＞='A' n＜='G') //高音，升12个半音
+　　 i=i+val[n-'A']+12;
+　　 else //否则，识为休止符
+　　 i=0;
+　　if (flag=='b') i--;
+　　else if (flag=='#') i++;
+　　return(i);
+　　}
+
+　　 if (IsFirst)
+　　 {WriteNoteOn(ntrack,c,
+　　GetCurPaiSpeed(SpeedVal/(FOURPAINUM*4/dd)+1),
+　　delaytime);
+　　 IsFirst=0;}
+　　 else
+　　 NoteOn(c,
+　　GetCurPaiSpeed(SpeedVal/(FOURPAINUM*4/dd)+1),
+　　delaytime);
+　　 SpeedVal=(SpeedVal+delaytime) //下一音符所处的节拍
+　　%(PaiNum*FOURPAINUM*4/dd);
+　　}
+　　else
+　　{switch(c)
+　　{ case 'S':
+　　case 's':
+　　case 'p':
+　　case 'P': /*设置音色*/
+　　 sscanf(TextFileBuf,"%d",IsFirst);
+　　 while(*TextFileBuf＞='0' *TextFileBuf＜='9')
+　　TextFileBuf++;
+　　if (c=='P'||c=='p') //若为P,表示改变音色
+　　 ChangePrommgram(ntrack,(char)IsFirst);
+　　 else //否则,表示设置音量大小
+　　 WriteSoundSize(ntrack,(unsigned int)IsFirst);
+　　 IsFirst=1;
+　　 break;
+　　case '{': /*写歌词*/
+　　 msgbuf=buf;
+　　 while(*TextFileBuf!='}'
+　　 *TextFileBuf!='/n'
+　　 *TextFileBuf!=0
+　　 *TextFileBuf!='[')
+　　 *(msgbuf++)=*(TextFileBuf++);
+　　 *msgbuf=0;
+　　 IsFirst=1;
+　　 WriteTextMsg(buf);
+　　 if (*TextFileBuf=='}') TextFileBuf++;
+　　 break;
+　　case '//': //降八度
+　　 OneVal-=12;
+　　 break;
+　　case '/': //升八度
+　　 OneVal+=12;
+　　 break;
+　　case '[':
+　　case 0:
+　　 TextFileBuf--;
+　　 break;
+　　default:
+　　 sprintf(ErrorMsg,"文本文件[%s]出现非法字符(%c)。",
+　　 TextFileName,c);
+　　 free(MidiFileOldBuf);
+　　 free(TextFileOldBuf);
+　　 fcloseall();
+　　 return(InvalideChar);
+　　 }
+　　}
+　　}
+　　WriteTrackEndMsg(); //设置磁道结束信息
+　　WriteTrackMsgToFile(MidiFp); //将磁道音乐信息定入文件中
+　　ntrack++;
+　　}
+　　free(MidiFileOldBuf);
+　　free(TextFileOldBuf);
+　　fclose(MidiFp);
+　　sprintf(ErrorMsg,"MIDI文件[%s]转换成功。",MidiFileName);
+　　return(ChangeOK);
+　　}
+　/*****************************************************/
+　　/*作用：将长整型数据变成可变长度，存入buf处 */
+　　/*入口参数：n 数据 buf 结果保存入 */
+　　/****************************************************/
+　　void MIDI::WriteLenghtToBuf(unsigned long n,char *buf)
+　　{ unsigned char b[4]={0};
+　　int i;
+　　b[3]=(unsigned char)(n0x7f);
+　　i=2;
+　　while(n＞＞7)
+　　{ n＞＞=7;
+　　 b[i--]=(char)( (n0x7f)|0x80);
+　　 }
+　　for (i=0;i＜4;i++)
+　　if (b[i]) *(buf++)=b[i];
+　　*buf=0;
+　　}
+　　long MIDI::NewLong(long n) //将长整型数据改成高位在前
+　　{ union LENGHT l={0};
+　　char i;
+　　l.length=n;
+　　SWAP(l.b[3],l.b[0]);
+　　SWAP(l.b[2],l.b[1]);
+　　return(l.length);
+　　}
+　　//开始演奏音乐
+　　void MIDI::WriteNoteOn(char channel, //通道号
+　　char note, //音符值
+　　char speed, //按键速度
+　　unsigned long delaytime) //延时数
+　　{ unsigned char buf[5];
+　　int i;
+　　channel--;
+　　*(MidiFileBuf++)=0;
+　　*(MidiFileBuf++)=0x90|channel0x7f;//Write Channel
+　　*(MidiFileBuf++)=note;
+　　*(MidiFileBuf++)=speed;
+　　WriteLenghtToBuf(delaytime*MIDICLOCK,buf);
+　　i=0;
+　　while(buf[i]＞=0x80) //Write Delay Time
+　　 *(MidiFileBuf++)=buf[i++];
+　　*(MidiFileBuf++)=buf[i];
+　　*(MidiFileBuf++)=note;
+　　*(MidiFileBuf++)=0;
+　　}
+　　void MIDI::NoteOn(char note,
+　　char speed,
+　　unsigned long delaytime) //发音
+　　{ unsigned char buf[5];
+　　int i;
+　　*(MidiFileBuf++)=0;
+　　*(MidiFileBuf++)=note;
+　　*(MidiFileBuf++)=speed;
+　　WriteLenghtToBuf(delaytime*MIDICLOCK,buf);
+　　i=0;
+　　while(buf[i]＞0x80)
+　　 *(MidiFileBuf++)=buf[i++];
+　　*(MidiFileBuf++)=buf[i];
+　　*(MidiFileBuf++)=note;
+　　*(MidiFileBuf++)=0;
+　　}
+　　void MIDI::ChangePrommgram(char channel,char n) //改变音色
+　　{ *(MidiFileBuf++)=0;
+　　*(MidiFileBuf++)=0xc0|(channel-1)0x7f;
+　　*(MidiFileBuf++)=n;
+　　}
+　　void MIDI::WriteTextMsg(char *msg) //向内存写入一文本信息
+　　{ char bufmsg[100]={0xff,5,0,0,0};
+　　int len;
+　　*(MidiFileBuf++)=0;
+　　bufmsg[2]=(char)strlen(msg);
+　　strcpy(bufmsg[3],msg);
+　　strcpy(MidiFileBuf,bufmsg);
+　　MidiFileBuf+=strlen(bufmsg)+3;
+　　}
+　　void MIDI::WriteTrackEndMsg() //磁道结束信息
+　　{ *(MidiFileBuf++)=0;
+　　*(MidiFileBuf++)=0xff;
+　　*(MidiFileBuf++)=0x2f;
+　　*(MidiFileBuf++)=0;
+　　}
+　　char MIDI::GetToneNum(char n,char flag)
+　　/*入口参数： n 音高
+　　 flag 升降记号
+　　返回值： 该乐音的实际标号值*/
+　　{ static char val[7]={9 ,11,0,2,4,5,7};
+　　static char one[7]={0,2,4,5,7,9,11};
+　　int i;
+　　i=OneVal;
+　　if (n＜='7' n＞='1') i=i+one[n-'1'];
+　　else
+　　 if (n＞='a' n＜='g')
+　　i=i+val[n-'a']-12; //低音，降12个半音
+　　 else
+　　 if (n＞='A' n＜='G') //高音，升12个半音
+　　 i=i+val[n-'A']+12;
+　　 else //否则，识为休止符
+　　 i=0;
+　　if (flag=='b') i--;
+　　else if (flag=='#') i++;
+　　return(i);
+　　}
+
