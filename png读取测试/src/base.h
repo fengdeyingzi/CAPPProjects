@@ -52,7 +52,7 @@ typedef long int32; //有符号32bit整型
 typedef unsigned char uint8; //无符号8bit整型
 typedef signed char int8; //有符号8bit整型
 typedef signed short int16; //有符号16bit整型
-typedef unsigned long long uint64;
+typedef unsigned long long uint64; //无符号64bit整型
 
 //下面四项为大部分系统函数的返回值，没有在系统内定义，如果需要这些宏定义请在其他头文件中定义
 #define MR_SUCCESS 0 //成功

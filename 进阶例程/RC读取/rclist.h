@@ -28,7 +28,7 @@ typedef struct
 
 //从assets目录读取RC文件，返回句柄
 //参数：rc文件名，rc字符数量
-int rc_read(char *filename,int math)
+long rc_read(char *filename,int math)
 {
  RC_LIST *rclist=malloc(sizeof(RC_LIST));
  
@@ -40,13 +40,13 @@ int rc_read(char *filename,int math)
  rclist->math=math;
  rclist->id = (unsigned short*)buf;
  rclist->text = buf+ math*2;
- return (int)rclist;
+ return (long)rclist;
 }
 
 
 //获取字符
 //参数：rc句柄，字符id
-char *rc_getText(int rc,int id)
+char *rc_getText(long rc,int id)
 {
  RC_LIST *rclist=(void*)rc;
  if(rclist==NULL)return NULL;
@@ -58,20 +58,20 @@ char *rc_getText(int rc,int id)
 }
 
 //获取gb编码字符串
-int rc_getTextGb(int rc,int id,char *text)
+int rc_getTextGb(long rc,int id,char *text)
 {
  RC_LIST *rclist=(void*)rc;
  if(rclist==NULL)return -1;
  char *input= rclist->text + rclist->id[id];
- int input_len= wstrlen(input);
- int output_len;
+ int32 input_len= wstrlen(input);
+ int32 output_len;
  u2c( input, input_len, &text, &output_len);
  
  return 0;
 }
 
 //释放内存
-int rc_free(int rc)
+int rc_free(long rc)
 {
  RC_LIST *rclist=(void*)rc;
  

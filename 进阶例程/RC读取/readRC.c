@@ -3,10 +3,11 @@
 #include "rclist.h"
 #include "coding.h"
 
-int rc;
+int32 rc;
 char temp[400];
 
- void rc_draw()
+
+ void rc_draw()
 {
     //用指定颜色清除屏幕
     cls(60,60,60);
@@ -43,14 +44,16 @@ int init()
 
 
 
-//event函数，接收消息事件
+
+//event函数，接收消息事件
 int event(int type, int p1, int p2)
 {
     if(KY_UP == type)
     {
         switch(p1)
         {
-        case _BACK:
+        case _BACK
+:
             exit();
             break;
         case _MENU:

@@ -13,6 +13,7 @@
         "*.tcc": "cpp",
         "fstream": "cpp",
         "android.h": "c",
-        "graphics.h": "c"
+        "graphics.h": "c",
+        "tpng.h": "c"
     },
 }
