@@ -14,6 +14,12 @@
         "fstream": "cpp",
         "android.h": "c",
         "graphics.h": "c",
-        "tpng.h": "c"
+        "tpng.h": "c",
+        "pthread.h": "c",
+        "httpclient.h": "c",
+        "buffer.h": "c",
+        "types.h": "c",
+        "unistd.h": "c",
+        "streambuf": "c"
     },
 }
