@@ -4,6 +4,7 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}\\src\\**",
+                "D:\\Sdk\\android-ndk-r8b\\platforms\\android-9\\arch-arm\\usr\\include",
                 "D:\\app\\mingw64\\include\\SDL2\\**",
                 "D:\\app\\mingw64\\include\\**"
 
@@ -12,8 +13,7 @@
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE",
-                "USE_RENDER",
-                "WIN32"
+                "USE_RENDER"
             ],
             "compilerPath": "gcc.exe",
             "cStandard": "c11",

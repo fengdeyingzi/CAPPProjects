@@ -20,6 +20,7 @@
         "buffer.h": "c",
         "types.h": "c",
         "unistd.h": "c",
-        "streambuf": "c"
+        "streambuf": "c",
+        "socket.h": "c"
     },
 }

@@ -100,14 +100,12 @@ STRING_BUFFER* buffer_create(void){
 }
 
 int32 buffer_append(STRING_BUFFER* buffer, char c){
-    if(buffer->len<buffer->max){
+    if(buffer->len<buffer->max - 2){
         buffer->data[buffer->len] = c;
-        
+        buffer->len++;
         // printf("%s",buffer->data);
         return 0;
     }
-    //哪怕内存溢出 长度仍自增
-    buffer->len++;
     return -1;
 }
 
@@ -125,16 +123,6 @@ int32 buffer_clear(STRING_BUFFER* buffer){
     buffer->len = 0;
     buffer->body_len = 0;
     return 0;
-}
-
-//获取buffer实际长度（内存溢出的不算进长度里）
-int32 buffer_datalen(STRING_BUFFER* buffer){
-    return buffer->len>=buffer->max ? buffer->max:buffer->len;
-    
-}
-//获得buffer理论长度
-int32 buffer_len(STRING_BUFFER* buffer){
-    return buffer->len;
 }
 
 int32 buffer_free(STRING_BUFFER* buffer){
