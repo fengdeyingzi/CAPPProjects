@@ -68,7 +68,7 @@ int init()
     printf("pthread\n");
     drawInfo("获取中");
     timer = timercreate();
-    pthread_create(&thread_http, NULL, (void *)http_post, (void *)"http://app.yzjlb.net/");
+    http_post("http://app.yzjlb.net/");
 
     return 0;
 }

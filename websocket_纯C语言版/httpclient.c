@@ -163,7 +163,7 @@ int client_entry(char *url) {
 
 	int ret = connect(sock, (struct sockaddr *)&server_sock, sizeof(server_sock));
 	socket_state = 1;
-	// printf("connect %d %d\n", sock, ret);
+	printf("connect %d %d\n", sock, ret);
 	if (ret < 0) {
 		// printf("connect failed...,errno is %d,errstring is %s\n", errno, strerror(errno));
 		// lis_onerror(HTTP_ERROR_CONNECT);
@@ -172,7 +172,7 @@ int client_entry(char *url) {
 		// timerstart(timer_http, 1, HTTP_ERROR_CONNECT, timer_onError, 0);
 		return -1;
 	}
-	// printf("connect sercer success !\n");
+	printf("connect sercer success !\n");
 	socket_state = 2;
 	struct timeval timeout = {10, 0};  //10s
 	setsockopt(sock, SOL_SOCKET, SO_SNDTIMEO, (char *)&timeout, sizeof(struct timeval));
@@ -191,21 +191,22 @@ int client_entry(char *url) {
 		char buf[4096] = {0};
 
 		temp_int = readsocket(sock, buf, sizeof(buf), 0);
-		if (temp_int >= 0) {
+		if (temp_int > 0) {
+			printf("buffer_append %d %s\n",temp_int, buffer_http->data);
 			buffer_appendx(buffer_http, buf, temp_int);
 			//判断header是否完成
 			if (strstr(buffer_http->data, "\r\n\r\n")) {
 				buffer_http->body = strstr(buffer_http->data, "\r\n\r\n") + 4;
 				//读取头完成
 				temp_str = strstr(buffer_http->header, "Content-Length");
-				// printf("!=null");
+				printf("!=null");
 				if (temp_str != NULL && (strstr(temp_str, "\r\n") != NULL)) {
-					// printf("getline_value begin\n");
+					printf("getline_value begin\n");
 					temp_str = getline_value(temp_str);
-					// printf("getline_value %s\n", temp_str);
+					printf("getline_value %s\n", temp_str);
 					content_len = atoi(temp_str);
 					buffer_http->body_len = content_len;
-					// printf("atoi %d\n", content_len);
+					printf("atoi %d\n", content_len);
 					free(temp_str);
 
 					temp_int = isContentSuccess(buffer_http->data, content_len);
@@ -213,7 +214,7 @@ int client_entry(char *url) {
 						sock = -1;
 						buffer_http->body = strstr(buffer_http->data, "\r\n\r\n");
 						buffer_http->body += 4;
-						// printf("http success %s \n", buffer_http->body);
+						printf("http success %s \n", buffer_http->body);
 						// drawInfo("http获取成功");
 						// lis_onsuccess(local_ip, buffer_http->data, buffer_http->body);
 						http_result = 2;
@@ -235,7 +236,7 @@ int client_entry(char *url) {
 				http_result = 1;
 				http_result_data = HTTP_PROGRESS_HEAD;
 			}
-		} else {
+		} else if(temp_int<0){
 			printf("read err\n");
 			break;
 		}
@@ -244,16 +245,10 @@ int client_entry(char *url) {
 	free(ip);
 	ip = NULL;
 	close_socket(sock);
-	if (buffer_http) {
-		buffer_free(buffer_http);
-		buffer_http = NULL;
-	}
-	if (send_buf) {
-		free(send_buf);
-		send_buf = NULL;
-	}
+	
 
 	printf("http_exit\n");
+	return 0;
 }
 
 void send_result(int result_type, int32 ws, char *msg, int error) {
@@ -498,6 +493,7 @@ int client_ws(HTTP_WEBSOCKET *websocket) {
 	send_result(RESULT_WS_ONCLOSE, (int32)websocket, NULL, 0);
 
 	printf("websocket exit\n");
+	return 0;
 }
 
 void print_ip(int32 ip) {
@@ -1039,6 +1035,14 @@ void http_exit(void) {
 	if (arr_websocket) {
 		arr_free(arr_websocket);
 		arr_websocket = NULL;
+	}
+	if (buffer_http) {
+		buffer_free(buffer_http);
+		buffer_http = NULL;
+	}
+	if (send_buf) {
+		free(send_buf);
+		send_buf = NULL;
 	}
 	// printf("http_exit 4\n");
 
