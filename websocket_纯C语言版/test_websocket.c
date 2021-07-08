@@ -3,9 +3,10 @@
 #include "httpclient.h"
 #include "exb.h"
 int32 websocket;
+int32 timer_active;
 int isSend;
 void drawInfo(char *text){
-    printf("%s\n",text);
+    // printf("%s\n",text);
     char *temp = NULL;
     rectst re;
     colorst co;
@@ -25,11 +26,12 @@ void drawInfo(char *text){
 
 
 void ws_onOpen(int32 ws) {
-	
+	printf("ws_onOpen\n");
 }
 
 void ws_onMessage(int32 ws,char *msg){
-    printf("onMessage %s\n",msg);
+    // printf("onMessage %s\n",msg);
+    drawInfo(msg);
     if(!isSend){
         http_ws_send(ws, "{\"action\":\"setname\", \"data\":\"test\"}");
         isSend = TRUE;
@@ -38,13 +40,20 @@ void ws_onMessage(int32 ws,char *msg){
 }
 
 void ws_onClose(int32 ws){
-
+    printf("ws_onClose\n");
+    drawInfo("ws_onClose");
+    websocket = 0;
 }
 
 void ws_onError(int32 ws,int error){
-
+    printf("ws_onError %d\n",error);
+    websocket = 0;
 }
 
+
+void logoc_active(int32 data){
+    http_ws_send(websocket, "#");
+}
 
 
 void logoc(int32 data){
@@ -53,12 +62,12 @@ void logoc(int32 data){
 
 
 
-pthread_t thread_http;
+
 int32 timer;
 //入口函数，程序启动时开始执行
 int init()
 {
-    thread_http = 1;
+    
     isSend = FALSE;
     printf("http_init\n");
     cls(240,240,240);
@@ -68,7 +77,8 @@ int init()
     drawInfo("获取中");
     
     websocket = http_ws("ws://websocket.yzjlb.net:2022/socket", ws_onOpen, ws_onMessage, ws_onClose, ws_onError);
-
+    timer_active = timercreate();
+    timerstart(timer_active, 5000, websocket, logoc_active, 1);
     return 0;
 }
 
@@ -82,12 +92,27 @@ int event(int type, int p1, int p2)
     {
         switch(p1)
         {
+        
         case _BACK:
+        drawInfo("退出中");
+        http_ws_exit(websocket);
+        websocket = 0;
+        drawInfo("socket退出");
+        http_exit();
+        drawInfo("http退出");
+        
             exit();
             break;
         case _MENU:
             break;
         }
+    }
+    if(MS_UP == type){
+        printf("退出\n");
+        http_ws_exit(websocket);
+        websocket = 0;
+        http_exit();
+        
     }
 
     return 0;
@@ -108,8 +133,7 @@ int resume()
 //应用退出函数，在应用退出时可做一些内存释放操作
 int exitApp()
 {
-    http_ws_exit(websocket);
-    http_exit();
+    timerdel(timer_active);
     return 0;
 }
 
