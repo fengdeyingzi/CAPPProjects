@@ -21,10 +21,10 @@ typedef struct {
     int iskey; //是否按下跳跃键
     int wv; //横向速度
     int hv; //纵向速度
-    int bitmap; //图片
-    int bitmap_big;
-    int sprite; //精灵
-    int sprite_big; //放大状态的精灵
+    int32 bitmap; //图片
+    int32 bitmap_big;
+    int32 sprite; //精灵
+    int32 sprite_big; //放大状态的精灵
 } _HERO;
 
 enum {
@@ -214,7 +214,7 @@ int hero_isCollObjectLayer(_HERO *hero, TILED_OBJECT_LAYER *layer) {
 //新的主角运动事件 检测采用碰撞层
 void hero_run(_HERO *hero, TILED_OBJECT_LAYER *layer_tiled) {
 //    logi("hero run");
-    int sprite = hero_getSprite(hero);
+    int32 sprite = hero_getSprite(hero);
 //    int hero_action = hero->action;
 //        int isjump = hero->isjump;
 //        int iskey = hero->iskey;
@@ -399,7 +399,7 @@ void hero_debug(_HERO *hero) {
 //主角运动事件
 void hero_run_old(_HERO *hero, TILED_TILE_LAYER *layer_tiled) {
 //    logi("hero run");
-    int sprite = hero_getSprite(hero);
+    int32 sprite = hero_getSprite(hero);
     int hero_action = hero->action;
     int isjump = hero->isjump;
     int iskey = hero->iskey;

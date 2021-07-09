@@ -7,12 +7,12 @@
 //读取文本数据
 char *text_read(char *filename)
 {
- int len;
+ int32 len;
  char *text;
  len=getlen(filename);
  if(len<=0)return NULL;
  text=(char *)malloc(len+1);
- int f=open(filename,1);
+ int32 f=open(filename,1);
  if(f)
  {
   read(f,text,len);

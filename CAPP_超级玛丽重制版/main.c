@@ -35,8 +35,8 @@ _TILED *tiled;
 
 int itemw;///图块大小
 
-int timer;
-int time_data;
+int32 timer;
+int32 time_data;
 
 
 //所有敌人
@@ -192,15 +192,34 @@ int resume()
 
 int exitApp()
 {
-    timerdel(timer);
-
-    bitmapFree(bitmap_background);
+    if(timer){
+        timerdel(timer);
+        timer = 0;
+    }
+    
+    if(bitmap_background){
+        bitmapFree(bitmap_background);
+        bitmap_background = 0;
+    }
+    
     //退出时释放地图
-    tiled_free(tiled);
+    if(tiled != NULL){
+        tiled_free(tiled);
+        tiled = NULL;
+    }
+    
     //释放主角
-    hero_free(hero);
+    if(hero!=NULL){
+       hero_free(hero); 
+       hero = NULL;
+    }
+    
     //销毁敌人
-    en_free(en_task);
+    if(en_task!=NULL){
+        en_free(en_task);
+        en_task = NULL;
+    }
+    
 
 
     printf("退出游戏\n");

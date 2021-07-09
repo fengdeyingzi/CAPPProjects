@@ -38,8 +38,8 @@ typedef struct _ENEMY {
     int isDel; //是否死亡
     int isSleep; //是否休眠 默认是
     int direction; //运动方向 上_UP  下_DOWN 左_LEFT 右_RIGHT
-    int bitmap;
-    int sprite; //精灵
+    int32 bitmap;
+    int32 sprite; //精灵
     struct _ENEMY *next;
 
 } _ENEMY;
@@ -55,13 +55,13 @@ typedef struct _MISSILE {
     int isDel; //是否死亡
     int isSleep; //是否休眠 默认是
     int direction; //运动方向 上 下 左 右
-    int bitmap;
-    int sprite; //精灵
+    int32 bitmap;
+    int32 sprite; //精灵
     struct _ENEMY *next;
     int bullet_x;
     int bullet_y;
     //导弹子弹的x y坐标
-    int bullet_sprite; //导弹子弹的精灵
+    int32 bullet_sprite; //导弹子弹的精灵
 
 } _MISSILE; //导弹
 
@@ -76,8 +76,8 @@ typedef struct _FLOWER {
     int isDel; //是否死亡
     int isSleep; //是否休眠 默认是
     int direction; //运动方向 上 下 左 右
-    int bitmap;
-    int sprite; //精灵
+    int32 bitmap;
+    int32 sprite; //精灵
     struct _ENEMY *next;
     int move_y; //花盆的y坐标 用来让花进行相对移动
     int move_v; //移动速度
@@ -94,15 +94,15 @@ typedef struct _MUSHROOM {
     int isDel; //是否死亡
     int isSleep; //是否休眠 默认是
     int direction; //运动方向 上 下 左 右
-    int bitmap;
-    int sprite; //精灵
+    int32 bitmap;
+    int32 sprite; //精灵
     struct _ENEMY *next;
 
     int action; //状态
     int gv; //重力加速度
     int isCheckTile; //是否检测地图图块进行运动 为了模拟真实的蘑菇运动 在小范围时间内让它不检测图块
     int checkTime; //检测图块的时间 这个时间越短 那么蘑菇就越聪明
-    int runTime; //记录运动时间
+    int32 runTime; //记录运动时间
 } _MUSHROOM; //蘑菇
 
 typedef struct _HEDGEHOG {
@@ -116,15 +116,15 @@ typedef struct _HEDGEHOG {
     int isDel; //是否死亡
     int isSleep; //是否休眠 默认是
     int direction; //运动方向 上 下 左 右
-    int bitmap;
-    int sprite; //精灵
+    int32 bitmap;
+    int32 sprite; //精灵
     struct _ENEMY *next;
 
     int action; //状态
     int gv; //重力加速度
     int isCheckTile; //是否检测地图图块进行运动 为了模拟真实的蘑菇运动 在小范围时间内让它不检测图块
     int checkTime; //检测图块的时间 这个时间越短 那么蘑菇就越聪明
-    int runTime; //记录运动时间
+    int32 runTime; //记录运动时间
 } _HEDGEHOG; //刺猬
 
 typedef struct _GANODERMA {
@@ -138,8 +138,8 @@ typedef struct _GANODERMA {
     int isDel; //是否死亡
     int isSleep; //是否休眠 默认是
     int direction; //运动方向 上_UP  下_DOWN 左_LEFT 右_RIGHT
-    int bitmap;
-    int sprite; //精灵
+    int32 bitmap;
+    int32 sprite; //精灵
     struct _ENEMY *next;
 
 } _GANODERMA; //灵芝 （灵芝什么的弱爆了 一动不动的就可以了）

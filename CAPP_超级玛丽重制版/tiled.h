@@ -10,12 +10,12 @@ extern char *readtiledToSprite(char *text);
 
 //读取文本数据
 char *readText(char *filename) {
-    int len;
+    int32 len;
     char *text;
     len = getlen(filename);
     if (len <= 0)return NULL;
     text = malloc(len + 1);
-    int f = open(filename, 1);
+    int32 f = open(filename, 1);
     if (f) {
         read(f, text, len);
         text[len] = 0;
@@ -27,7 +27,7 @@ char *readText(char *filename) {
 //写入文本数据
 int writeText(char *filename, void *data, int len) {
     remove(filename);
-    int f = open(filename, 2 + 8);
+    int32 f = open(filename, 2 + 8);
     if (f > 0) {
         write(f, data, len);
         close(f);

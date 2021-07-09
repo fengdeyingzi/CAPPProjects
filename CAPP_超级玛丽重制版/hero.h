@@ -19,8 +19,8 @@ typedef struct
     int iskey; //是否按下跳跃键
     int wv; //横向速度
     int hv; //纵向速度
-    int bitmap;
-    int sprite; //精灵
+    int32 bitmap;
+    int32 sprite; //精灵
 } _HERO;
 
 enum
@@ -33,7 +33,7 @@ enum
 };
 
 extern int itemw;///图块大小
-extern int camera;
+extern int32 camera;
 extern struct TILED_LA *tiled;
 
 //创建主角

@@ -5,7 +5,7 @@
 
 typedef struct
 {
-    int *array;  //数组缓存
+    int32 *array;  //数组缓存
     int len;  //可用长度
     int size;  //数组内存长度
 } _ARRAY;
@@ -17,7 +17,7 @@ _ARRAY *array_create()
  _ARRAY *array=malloc(sizeof(_ARRAY));
  array->size=1024;
  array->len=0;
- array->array=malloc(array->size*4);
+ array->array=malloc(array->size*sizeof(int32));
  return array;
 };
 
@@ -25,11 +25,11 @@ _ARRAY *array_create()
 int array_append(_ARRAY *array,int num)
 {
  int size;
- int *data;
+ int32 *data;
  if(array->size<=array->len)
  {
   size=array->size+1024;
-  data=malloc(size*4);
+  data=malloc(size*sizeof(int32));
   memcpy(data,array->array,array->size);
   free(array->array);
   array->array=data;

@@ -87,7 +87,7 @@ void *tiled_create(char *tmxfile, char *spritefile, int bitmap) {
     //将图块循环添加到世界中
     printf("添加图块\n");
     int ix, iy;
-    int sp_temp;
+    int32 sp_temp;
     for (iy = 0; iy < tiled->height; iy++)
         for (ix = 0; ix < tiled->width; ix++) {
 
@@ -138,18 +138,46 @@ int tiled_getDataCoor(_TILED *tiled, int x, int y) {
 
 //销毁地图
 int tiled_free(_TILED *tiled) {
+    if(tiled == NULL){
+        return 0;
+    }
     //bitmap
-    bitmapFree(tiled->bitmap);
+    if(tiled->bitmap){
+        bitmapFree(tiled->bitmap);
+        tiled->bitmap = 0;
+    }
+    
     //sprite
-    for (int i = 0; i < tiled->width * tiled->height; i++)
-        sp_free(tiled->sprite[i]);
-    free(tiled->sprite);
+    for (int i = 0; i < tiled->width * tiled->height; i++){
+        if(tiled->sprite[i]){
+            sp_free(tiled->sprite[i]);
+            tiled->sprite[i] = 0;
+        }
+        
+    }
+    if(tiled->sprite){
+        free(tiled->sprite);
+        tiled->sprite = 0;
+    }
+    
     //camera
-    ca_free(tiled->camera);
+    if(tiled->camera){
+        ca_free(tiled->camera);
+        tiled->camera = 0;
+    }
+    
     //world
-    world_free(tiled->world);
+    if(tiled->world){
+        world_free(tiled->world);
+        tiled->world = 0;
+    }
+    
     //data
-    free(tiled->data);
+    if(tiled->data != NULL){
+        free(tiled->data);
+        tiled->data = NULL;
+    }
+    
 
     //tiled
     free(tiled);

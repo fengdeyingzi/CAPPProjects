@@ -13,30 +13,30 @@ typedef struct {
     int x; //敌人出现的位置
     int y; //敌人出现的坐标
     int direction; //运动方向
-    int sprite; //精灵
+    int32 sprite; //精灵
 } _ENEMY;
 
 
 typedef struct {
     int load; //进度
     int size; //敌人数量
-    int bitmap_mogu;
-    int bitmap_turtle;
-    int bitmap_flower;
+    int32 bitmap_mogu;
+    int32 bitmap_turtle;
+    int32 bitmap_flower;
     _ARRAY *enemys; //所有敌人
 } _EN_TASK;
 
 typedef struct _TILED{
-    int bitmap;
+    int32 bitmap;
     int width;
     int height;
     int itemw;
     int itemh;
-    int *sprite;
-    int *data;
+    int32 *sprite;
+    int32 *data;
     _EN_TASK *en_task;
-    int world;
-    int camera;
+    int32 world;
+    int32 camera;
 } _TILED;
 
 

@@ -20,7 +20,7 @@ TILED_OBJECT_LAYER *layer_banner; //旗帜
 TILED_OBJECT_LAYER *layer_occ; //遮挡
 TILED_OBJECT_LAYER *layer_end; //终点
 _ENEMY *enemys;
-int camera;
+int32 camera;
 int upx, upy;
 _HERO *hero;
 
@@ -77,7 +77,7 @@ int init() {
     refreshMap();
     timer = timercreate();
     timerstart(timer, 50, 1, logoc, 1);
-hero_setxy(hero,20,9*20);
+    hero_setxy(hero,20,9*20);
     return 0;
 }
 
@@ -169,7 +169,7 @@ _ENEMY *enemy_remove(_ENEMY *enemys, _ENEMY *temp){
 
 void refreshMap() {
     cls(255, 255, 255);
-    int time = getuptime();
+    int32 time = getuptime();
     enemys_draw(enemys, camera);
     drawLayer(camera, map->image, (TILED_LAYER *) layer_tiled);
 //    logi("绘制图层%d",getuptime()-time);
