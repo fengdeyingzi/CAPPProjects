@@ -9,7 +9,7 @@
 //gb编码转unicode 返回的字符串需要释放内存
 char *gbToUn(char *text)
 {
- int len;
+ int32 len;
  return (char*)c2u(text, NULL, &len);
  
 }
