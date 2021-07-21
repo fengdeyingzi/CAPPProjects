@@ -109,9 +109,7 @@ int event(int type, int p1, int p2)
     }
     if(MS_UP == type){
         printf("退出\n");
-        http_ws_exit(websocket);
-        websocket = 0;
-        http_exit();
+        app_exit();
         
     }
 
@@ -134,6 +132,9 @@ int resume()
 int exitApp()
 {
     timerdel(timer_active);
+    http_ws_exit(websocket);
+    websocket = 0;
+    http_exit();
     return 0;
 }
 

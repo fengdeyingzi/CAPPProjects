@@ -368,12 +368,12 @@ extern BMPSHOWFLIP bmpshowflip;
 #define printf app_printf
 #define sprintf app_sprintf
 
-#define open(a,b) app_open(a,b) //
-#define close(a) app_close(a) //
+// #define open(a,b) app_open(a,b) //
+// #define close(a) app_close(a) //
 #define filestate app_filestate //
-#define write(a,b,c) app_write(a,b,c) //
-#define read(f,a,b) app_read(f,a,b) //
-#define seek(f,a,b) app_seek(f,a,b) //
+// #define write(a,b,c) app_write(a,b,c) //
+// #define read(f,a,b) app_read(f,a,b) //
+// #define seek(f,a,b) app_seek(f,a,b) //
 #define getlen(a) app_getlen(a) //
 
 #define remove app_remove 
