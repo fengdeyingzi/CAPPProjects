@@ -25,6 +25,7 @@ typedef int32 (*CREATEVIEW)(char* name);
 typedef void (*CLEARVIEW)();
 typedef void (*SETORIENTATION)(int orien);
 typedef void (*SETVIEW)(int32 view,char* words);
+typedef int (*LOG_PRINT)(int prio, const char* tag, const char* fmt,...);
 
 typedef int32 (*FINDVIEWBYID)(int id);
 typedef void (*ADDVIEW)(int32 layout,int32 view);
@@ -84,7 +85,7 @@ LIST_REMOVE list_remove;
 LIST_GETSIZE list_getSize;
 LIST_NOTIFYDATA list_notifyData;
 EX_CALL ex_call;
-
+LOG_PRINT log_print;
 
 int android_add(char* name, void* ptr)
 {
@@ -219,6 +220,11 @@ int android_add(char* name, void* ptr)
  else if(!strcmp(name,"ex_call"))
  {
   ex_call=(EX_CALL)ptr;
+ }
+ else if(!strcmp(name, "log_print")){
+//#ifdef LOG_PRINT
+  log_print = (LOG_PRINT)ptr;
+//#endif
  }
  else
  {

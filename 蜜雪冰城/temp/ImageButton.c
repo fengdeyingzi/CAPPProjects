@@ -1,7 +1,6 @@
 //加载系统头文件base.h
 #include <base.h>
 #include "android.h"
-#include "View.h"
 #include "ImageButton.h"
 
  void helloworld()
@@ -17,14 +16,14 @@
 void click_ok(int id)
 {
  printf("%s：%d\n","点击",id);
- toast("点击",0);
+ toast("按钮点击",0);
  draw_main();
  //printf("点\n");
 // return 0;
-}
+ }
 
 
-View *view;
+ImageButton *btn_ok,*btn_2;
 
 
 //绘制画面
@@ -32,7 +31,7 @@ void draw_main()
 {
     cls(240,240,240);
     //绘制按钮
-    view_draw(view);
+    img_draw(btn_ok);
     
     //刷新屏幕
     ref(0,0,SCRW,SCRH);
@@ -61,16 +60,15 @@ int init()
  
  setscrsize(720,720*DECVIDE_HEIGHT/DECVIDE_WIDTH);
     //创建按钮
-    view = view_create(20,20,720-40,220);
+    btn_ok = img_create("assets://icon.png",20,20,720-40,220);
     
-    //设置点击事件
-    view_setonclick(view, "click_ok");
- 
-    //设置控件id
-    view_setid(view,10);
+    //设置按钮点击事件
+    img_setonclick(btn_ok, "click_ok");
+    //设置显示模式
+    img_setmode(btn_ok,2);
+    //设置按钮id
+    img_setid(btn_ok,1);
     
-    //设置背景色 蓝色
-    view_setBackgroundColor(view,0xff6080f0);
     
     draw_main();
     return 0;
@@ -78,7 +76,7 @@ int init()
 
 void exit_free()
 {
- view_free(view);
+ img_free(btn_ok);
  
 }
 
@@ -87,7 +85,7 @@ void exit_free()
 int event(int type, int p1, int p2)
 {
  //监听event事件
- view_event(view,type,p1,p2);
+ img_event(btn_ok,type,p1,p2);
  
     if(KY_UP == type)
     {

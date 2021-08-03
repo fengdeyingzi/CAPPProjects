@@ -92,6 +92,32 @@ extern LIST_GETSIZE list_getSize;
 extern LIST_NOTIFYDATA list_notifyData;
 extern EX_CALL ex_call;
 extern SETVIEW setView;
+extern LOG_PRINT log_print;
+typedef enum android_LogPriority {
+    /** For internal use only.  */
+            ANDROID_LOG_UNKNOWN = 0,
+    /** The default priority, for internal use only.  */
+            ANDROID_LOG_DEFAULT, /* only for SetMinPriority() */
+    /** Verbose logging. Should typically be disabled for a release apk. */
+            ANDROID_LOG_VERBOSE,
+    /** Debug logging. Should typically be disabled for a release apk. */
+            ANDROID_LOG_DEBUG,
+    /** Informational logging. Should typically be disabled for a release apk. */
+            ANDROID_LOG_INFO,
+    /** Warning logging. For use with recoverable failures. */
+            ANDROID_LOG_WARN,
+    /** Error logging. For use with unrecoverable failures. */
+            ANDROID_LOG_ERROR,
+    /** Fatal logging. For use when aborting. */
+            ANDROID_LOG_FATAL,
+    /** For internal use only.  */
+            ANDROID_LOG_SILENT, /* only for SetMinPriority(); must be last */
+} android_LogPriority;
+#define LOGD(...) log_print(ANDROID_LOG_DEBUG,TAG ,__VA_ARGS__) // 定义LOGD类型
+#define LOGI(...) log_print(ANDROID_LOG_INFO,TAG ,__VA_ARGS__) // 定义LOGI类型
+#define LOGW(...) log_print(ANDROID_LOG_WARN,TAG ,__VA_ARGS__) // 定义LOGW类型
+#define LOGE(...) log_print(ANDROID_LOG_ERROR,TAG ,__VA_ARGS__) // 定义LOGE类型
+#define LOGF(...) log_print(ANDROID_LOG_FATAL,TAG ,__VA_ARGS__) // 定义LOGF类型
 
 
 

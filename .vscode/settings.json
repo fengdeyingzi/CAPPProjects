@@ -21,6 +21,9 @@
         "types.h": "c",
         "unistd.h": "c",
         "streambuf": "c",
-        "socket.h": "c"
+        "socket.h": "c",
+        "imagebutton.h": "c",
+        "bitmap.h": "c",
+        "xcoding.h": "c"
     },
 }

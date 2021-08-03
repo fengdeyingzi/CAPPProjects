@@ -1,8 +1,7 @@
 //加载系统头文件base.h
 #include <base.h>
 #include "android.h"
-#include "View.h"
-#include "ImageButton.h"
+#include "TextView.h"
 
  void helloworld()
 {
@@ -21,10 +20,10 @@ void click_ok(int id)
  draw_main();
  //printf("点\n");
 // return 0;
-}
+ }
 
 
-View *view;
+TextView *view;
 
 
 //绘制画面
@@ -32,7 +31,7 @@ void draw_main()
 {
     cls(240,240,240);
     //绘制按钮
-    view_draw(view);
+    textview_draw(view);
     
     //刷新屏幕
     ref(0,0,SCRW,SCRH);
@@ -61,16 +60,22 @@ int init()
  
  setscrsize(720,720*DECVIDE_HEIGHT/DECVIDE_WIDTH);
     //创建按钮
-    view = view_create(20,20,720-40,220);
+    view = textview_create(20,20,720-40,220);
     
     //设置点击事件
-    view_setonclick(view, "click_ok");
+    textview_setonclick(view, "click_ok");
  
     //设置控件id
-    view_setid(view,10);
+    textview_setid(view,10);
     
-    //设置背景色 蓝色
-    view_setBackgroundColor(view,0xff6080f0);
+    //设置文字
+    textview_setText(view,"手机C QQ交流群：370468001\n影子论坛：bbs.yzjlb.net\n影子俱乐部：www.yzjlb.net\n");
+    
+    //设置边距
+    textview_setpadding(view,16);
+    
+    //设置背景色 灰色
+    textview_setBackgroundColor (view, 0xffe0e0e0);
     
     draw_main();
     return 0;
@@ -78,7 +83,7 @@ int init()
 
 void exit_free()
 {
- view_free(view);
+ textview_free(view);
  
 }
 
@@ -87,7 +92,7 @@ void exit_free()
 int event(int type, int p1, int p2)
 {
  //监听event事件
- view_event(view,type,p1,p2);
+ textview_event(view,type,p1,p2);
  
     if(KY_UP == type)
     {

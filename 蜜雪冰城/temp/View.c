@@ -2,7 +2,6 @@
 #include <base.h>
 #include "android.h"
 #include "View.h"
-#include "ImageButton.h"
 
  void helloworld()
 {
@@ -21,7 +20,7 @@ void click_ok(int id)
  draw_main();
  //printf("µã\n");
 // return 0;
-}
+ }
 
 
 View *view;
