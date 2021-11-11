@@ -141,6 +141,8 @@ void game_logoc(long data) {
 		dtextUTF(temp, 20, 60, 20, 20, 20, 0, 1);
 	} else if (game_type == -1) {
 		textwhUTF("影", 1, &font_w, &font_h);
+		sprintf(temp, "分数：%d", action_size*10);
+		dtextUTF(temp, SCRW/2 - font_w*6, SCRH/2+100, 240, 45, 0x9a);
 		dtextUTF("游戏失败", SCRW / 2 - font_w * 2, SCRH / 2, 20, 20, 20, 0, 1);
 		img_show(btn_restart);
 		img_show(btn_home);

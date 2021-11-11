@@ -20,7 +20,7 @@ void click_ok(int id)
  draw_main();
  //printf("µã\n");
 // return 0;
- }
+}
 
 
 button *btn_ok,*btn_2;
