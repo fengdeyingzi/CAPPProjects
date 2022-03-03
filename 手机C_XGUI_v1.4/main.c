@@ -13,7 +13,7 @@
     ref(0,0,SCRW,SCRH);
 }
 
-void click_ok(int id)
+void click_ok(int32 id)
 {
  printf("%s£º%d\n","µã»÷",id);
  toast("°´Å¥µã»÷",0);
