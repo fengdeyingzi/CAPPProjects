@@ -111,7 +111,7 @@ void print_png(const uint8 * data, uint32 width, uint32 height) {
     printf("print_png %d %d\n",width,height);
     for(y = 0; y < (int)height; y++) {
         for(x = 0; x < (int)width; x++) {
-            printf("Pixel @ X and Y (%d, %d): %3d %3d %3d %3d\n",
+            printf("Pixel @ X Y (%d, %d): %03d %03d %03d %03d\n",
                 x+1, y+1,
                 data[0],
                 data[1],
@@ -174,7 +174,7 @@ printf("%d %d\n",width,height);
 int main() {
     printf("main\n");
     int32  pngsize;
-    uint8* pngdata = dump_file_data("example.png", &pngsize);
+    uint8* pngdata = dump_file_data("1.png", &pngsize);
     printf("读取png文件：%d %d\n",pngdata, pngsize);
     if (!decode_png(pngdata, pngsize)) {
         printf("An error was encountered!");

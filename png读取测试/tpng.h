@@ -38,28 +38,35 @@ extern "C" {
 #ifndef TPNG_H_INCLUDED
 #define TPNG_H_INCLUDED
 
-#include <stdint.h>
+#include <base.h>
+
+typedef int8      int8_t;
+typedef uint8     uint8_t;
+typedef int16     int16_t;
+typedef uint16    uint16_t;
+// typedef int32     int32_t;
+// typedef uint32    uint32_t;
 
 // Returns a raw data buffer containing 
 // 32-bit RGBA data buffer. Must be freed.
-uint8_t * tpng_get_rgba(
+uint8 * tpng_get_rgba(
 
     // The raw data to interpret.
     // This should be the entire data buffer of 
     // a valid PNG file.
-    const uint8_t * rawData,
+    const uint8 * rawData,
 
     // The number of bytes of the rawData.
-    uint32_t        rawSize,
+    uint32        rawSize,
 
 
     // On success, outputs the width of the 
     // image.
-    uint32_t * w, 
+    uint32 * w, 
 
     // On success, outputs the height of the 
     // image.
-    uint32_t * h 
+    uint32 * h 
 );
 
 

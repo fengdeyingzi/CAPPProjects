@@ -70,13 +70,13 @@ void *TPNG_CALLOC(num,size){
 #include "tpng.h"
 
 // Needed for tPNG
-#include <string.h>
-#include <stdlib.h>
+// #include <string.h>
+// #include <stdlib.h>
 //
 
 
 // Needed for TINFL
-#include <stddef.h>
+// #include <stddef.h>
 //#include <stdint.h>
 //#include <stdlib.h>
 //#include <string.h>
@@ -129,15 +129,15 @@ const void * tpng_iter_advance(tpng_iter_t *, uint32_t);
 
 // Helper macro setup. Takes in the iterator to set up.
 // Can only be called once per scope.
-#define TPNG_BEGIN(__iter__)tpng_iter_t * TPNGITER=__iter__
+#define TPNG_BEGIN(__iter__) tpng_iter_t * TPNGITER=__iter__
 
 // Reads the data type from the iterator.
-#define TPNG_READ(__type__)*(__type__*)((tpng_iter_advance_guaranteed(TPNGITER, sizeof(__type__))))
+#define TPNG_READ(__type__) *(__type__*)((tpng_iter_advance_guaranteed(TPNGITER, sizeof(__type__))))
 
 // Reads n bytes from the iterator.
 // Needs to be checked for NULL, so call for large amounts 
 // of bytes only when needed.
-#define TPNG_READ_N(__len__)tpng_iter_advance(TPNGITER, __len__)
+#define TPNG_READ_N(__len__) tpng_iter_advance(TPNGITER, __len__)
 
 
 
@@ -263,19 +263,19 @@ static void tpng_image_cleanup(tpng_image_t *);
 
 
 
-uint8_t * tpng_get_rgba(
+uint8 * tpng_get_rgba(
     // raw byte data of the PNG file.
-    const uint8_t * rawData,
+    const uint8 * rawData,
 
     // Length of the raw data.
-    uint32_t        rawSize,
+    uint32        rawSize,
 
 
     // Pointer to an editable uint32_t for image width.
-    uint32_t * w, 
+    uint32 * w, 
 
     // Pointer to an editable uint32_t for image height.
-    uint32_t * h
+    uint32 * h
 ) {
     *w = 0;
     *h = 0;
