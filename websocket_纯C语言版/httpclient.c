@@ -898,7 +898,7 @@ int32 http_ws(char *url, WS_ONOPEN onOpen, WS_ONMESSAGE onMessage, WS_ONCLOSE on
 
 	memset(send_buf, '\0', 255);
 
-	sprintf(ws->send_buf, "GET %s HTTP/1.1\r\nConnection:Upgrade\r\nHost:%s\r\nOrigin:null\r\nSec-WebSocket-Extensions:x-webkit-deflate-frame\r\nSec-WebSocket-Key:%s\r\nSec-WebSocket-Version:13\r\nUpgrade:websocket\r\n\r\n", road, host, key);
+	sprintf(ws->send_buf, "GET %s HTTP/1.1\r\nConnection: Upgrade\r\nHost: %s\r\nOrigin: null\r\nSec-WebSocket-Extensions: x-webkit-deflate-frame\r\nSec-WebSocket-Key: %s\r\nSec-WebSocket-Version: 13\r\nUpgrade: websocket\r\n\r\n", road, host, key);
 	printf("send %s", ws->send_buf);
 	free(road);
 	free(host);
