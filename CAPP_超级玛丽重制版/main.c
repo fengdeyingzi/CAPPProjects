@@ -24,12 +24,12 @@ void helloworld()
 _HERO  *hero;
 
 
-int bitmap_background;
+int32 bitmap_background;
 
 //世界
-int world;
+int32 world;
 //照相机
-int camera;
+int32 camera;
 //地图数据
 _TILED *tiled;
 
@@ -148,7 +148,7 @@ int event(int type, int p1, int p2)
         switch(p1)
         {
             case _BACK:
-                exitApp();
+                // exitApp();
                 exit();
                 break;
             case _MENU:
@@ -204,7 +204,7 @@ int exitApp()
     
     //退出时释放地图
     if(tiled != NULL){
-        tiled_free(tiled);
+        tiled_freemap(tiled);
         tiled = NULL;
     }
     

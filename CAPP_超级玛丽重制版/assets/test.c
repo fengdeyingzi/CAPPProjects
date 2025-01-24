@@ -1,14 +1,14 @@
 
 
 #include "base.h"
-#include "tmx.c.h"
+#include "tmx.h"
 #include "android.h"
 #include "graphics.h"
 #include "ex_game.h"
 #include "exb.h"
-#include "tmx_world.c.h"
-#include "world_hero.c.h"
-#include "enemy.c.h"
+#include "tmx_world.h"
+#include "world_hero.h"
+#include "enemy.h"
 
 //#include "graphics.h"
 //#include "android.h"
@@ -224,7 +224,7 @@ int resume() {
 
 int exitApp() {
     printf("应用退出");
-    tiled_free(map);
+    tiled_freemap(map);
     hero_free(hero);
     enemys_free(enemys);
     timerstop(timer);

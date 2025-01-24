@@ -2,7 +2,7 @@
 #define __ORGAN_C_H__
 
 #include "base/base.h"
-#include "world_hero.c.h"
+#include "world_hero.h"
 
 enum {
     R_UP, //向上运动

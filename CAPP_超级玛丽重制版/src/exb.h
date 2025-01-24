@@ -3,9 +3,10 @@
 
 
 #include "base.h"
+#include "xl_coding.h"
 #ifdef __cplusplus
 #include <iostream>
-extern "C"{ //ÒòÎªcppÎÄ¼şÄ¬ÈÏ¶¨ÒåÁË¸Ãºê),Ôò²ÉÓÃCÓïÑÔ·½Ê½½øĞĞ±àÒë
+extern "C"{ //å› ä¸ºcppæ–‡ä»¶é»˜è®¤å®šä¹‰äº†è¯¥å®),åˆ™é‡‡ç”¨Cè¯­è¨€æ–¹å¼è¿›è¡Œç¼–è¯‘
 #else
 #include <stdio.h>
 #include <stdlib.h>
@@ -73,7 +74,8 @@ extern LOADCLASS loadClass;
 extern RUNCLASS runClass;
 extern DEX_PUTSTRING dex_putString;
 
-extern EX_CODING ex_coding;
+// extern EX_CODING ex_coding;
+#define ex_coding(text, len, coding, tocoding) xl_ex_coding(text, len, coding, tocoding)
 extern TOUCH_ISDOWN touch_isdown;
 extern TOUCH_GETX touch_getx;
 extern TOUCH_GETY touch_gety;

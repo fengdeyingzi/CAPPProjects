@@ -1,50 +1,21 @@
-#ifndef _WORLD_HERO_H_
-#define _WORLD_HERO_H_
 
 
 #include "base.h"
 #include "readSprite.h"
 #include "tmx.h"
 #include "exb.h"
-#include "world_enemy.c.h"
+#include "world_enemy.h"
+#include "world_hero.h"
 
-typedef struct {
-    int type; //精灵状态
-    int isbig; //是否处于放大状态
-    int action; //人物动作
-    int x; // x坐标
-    int y; // y坐标
-    int hp; //生命
-    int isjump; //是否悬空
-    int isColak; //是否隐身
-    int colak_time; //隐身时间
-    int iskey; //是否按下跳跃键
-    int wv; //横向速度
-    int hv; //纵向速度
-    int32 bitmap; //图片
-    int32 bitmap_big;
-    int32 sprite; //精灵
-    int32 sprite_big; //放大状态的精灵
-} _HERO;
-
-enum {
-    HERO_STAND, //静止
-    HERO_RUN, //运动
-    HERO_JUMP, //跳
-    HERO_DOWN, //下蹲
-    HERO_RIGHT, //右移
-    HERO_END, //过关
-    HERO_DIE = 7 //死亡
-};
 
 
 extern int camera;
 extern TILED_TILE_LAYER *layer_tiled;
 
-void hero_run(_HERO *hero, TILED_OBJECT_LAYER *layer_tiled);
+void hero_run2(_HERO *hero, TILED_OBJECT_LAYER *layer_tiled);
 
 //创建主角
-_HERO *hero_create(char *sprite, char *sprite_big, char *bitmapname, char *bitmap_big) {
+_HERO *hero_create2(char *sprite, char *sprite_big, char *bitmapname, char *bitmap_big) {
     _HERO *hero = malloc(sizeof(_HERO));
     memset(hero, 0, sizeof(_HERO));
     hero->bitmap = readBitmapFromAssets(bitmapname);
@@ -94,7 +65,7 @@ int hero_getH(_HERO *hero) {
 }
 
 //设置主角位置
-int hero_setxy(_HERO *hero, int x, int y) {
+int hero_setxy2(_HERO *hero, int x, int y) {
     hero->x = x;
     hero->y = y;
     sp_setxy(hero->sprite, x, y);
@@ -212,7 +183,7 @@ int hero_isCollObjectLayer(_HERO *hero, TILED_OBJECT_LAYER *layer) {
 //}
 
 //新的主角运动事件 检测采用碰撞层
-void hero_run(_HERO *hero, TILED_OBJECT_LAYER *layer_tiled) {
+void hero_run2(_HERO *hero, TILED_OBJECT_LAYER *layer_tiled) {
 //    logi("hero run");
     int32 sprite = hero_getSprite(hero);
 //    int hero_action = hero->action;
@@ -500,20 +471,20 @@ void hero_run_old(_HERO *hero, TILED_TILE_LAYER *layer_tiled) {
 }
 
 //设置主角状态
-void hero_setType(_HERO *hero, int type) {
+void hero_setType2(_HERO *hero, int type) {
     hero->type = type;
     sp_setAction(hero->sprite, type);
 }
 
 //设置主角隐身
 //参数：是否隐身，隐身时间ms
-void hero_setColak(_HERO *hero, int isColak, int time) {
+void hero_setColak2(_HERO *hero, int isColak, int time) {
     hero->isColak = isColak;
     hero->colak_time = time;
 }
 
 //销毁主角
-int hero_free(_HERO *hero) {
+int hero_free2(_HERO *hero) {
     //销毁精灵
     sp_free(hero->sprite);
     sp_free(hero->sprite_big);
@@ -525,5 +496,3 @@ int hero_free(_HERO *hero) {
     return 0;
 }
 
-
-#endif

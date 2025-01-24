@@ -3,7 +3,8 @@
 
 #include "base.h"
 #include "graphics.h"
-#include "android.h"
+
+// #include "android.h"
 
 
 //地图超类 模拟继承效果
@@ -95,27 +96,27 @@ int tiled_getTileDataXY(TILED_TILE_LAYER *layer, int x, int y);
 
 
 //获取图层指定世界坐标的点的数据
-int tiled_getWorldData(TILED_TILE_LAYER *layer, int x, int y);
+extern int tiled_getWorldData(TILED_TILE_LAYER *layer, int x, int y);
 
 //寻找图层上指定点的位置
-int tiled_findData(TILED_TILE_LAYER *layer, int data);
+extern int tiled_findData(TILED_TILE_LAYER *layer, int data);
 
 //寻找指定名称的图层
-TILED_LAYER *tiled_findLayerFromName(TILED_MAP *map, char *name);
+extern TILED_LAYER *tiled_findLayerFromName(TILED_MAP *map, char *name);
 
 //获取当前图层的类型
-char *tiled_getMapType(TILED_LAYER *layer);
+extern char *tiled_getMapType(TILED_LAYER *layer);
 
 //读取指定图层的数据
-TILED_LAYER *tiled_getLayer(TILED_MAP *map, int i);
+extern TILED_LAYER *tiled_getLayer(TILED_MAP *map, int i);
 
-void tiled_delLayer(TILED_MAP *map, TILED_LAYER *layer);
+extern void tiled_delLayer(TILED_MAP *map, TILED_LAYER *layer);
 
 //获取指定层数据
-int *tiled_getData(TILED_TILE_LAYER *layer);
+extern int *tiled_getData(TILED_TILE_LAYER *layer);
 
 //释放内存
-int tiled_free(TILED_MAP *map);
+extern int tiled_freemap(TILED_MAP *map);
 
 
 

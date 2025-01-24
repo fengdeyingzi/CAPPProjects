@@ -1,9 +1,8 @@
-#ifndef _TMX_WORLD_H_
-#define _TMX_WORLD_H_
 
 #include "base.h"
-#include "tmx.c.h"
+#include "tmx.h"
 #include "ex_game.h"
+#include "tmx_world.h"
 
 //绘制一个线框
 static void drawLineRect(int x, int y, int w, int h) {
@@ -69,8 +68,3 @@ void drawLayer(int camera, TILED_IMAGE *tiled_image, TILED_LAYER *layer) {
 
 
 
-
-//
-
-
-#endif

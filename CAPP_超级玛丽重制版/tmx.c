@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include "base.h"
 #include "graphics.h"
-#include "android.h"
+// #include "android.h"
 #include "tmx.h"
 #include "ex_math.h"
 #include "readtext.h"
@@ -454,7 +454,7 @@ void tiled_toString(TILED_MAP *map){
 
 
 
-int tiled_free(TILED_MAP *map) {
+int tiled_freemap(TILED_MAP *map) {
     TILED_LAYER *layer = map->layer;
     TILED_LAYER *uplayer = null;
     do {

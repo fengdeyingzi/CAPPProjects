@@ -67,77 +67,14 @@ SPRITE *sp_read(char *filename, int bitmap)
 
 
 //给精灵添加动作
-int sp_add(long int id, ACTION *action) {
-    SPRITE *sprite = (void *) id;
-
-    sprite->action[sprite->size++] = action;
-
-    return 0;
-}
-
+int sp_add(long int id, ACTION *action);
 //通过图片创建精灵
-SPRITE *sp_bitmapcreate(long int bitmap, int width, int height) {
-    // int bitmap=readBitmapFromAssets(filename);
-    BITMAPINFO picinfo;
-    bitmapGetInfo(bitmap, &picinfo);
-    //创建精灵
-    SPRITE *sprite = (SPRITE *) sp_new();
-    sprite->bitmap = bitmap;
-    // printf("\n");
-    //创建动作
-    ACTION *action = ac_new();
-    //printf("\n");
-    int x, y;
-    for (y = 0; y < picinfo.height; y += height)
-        for (x = 0; x < picinfo.width; x += width) {
-
-            //创建rect
-            RECTFLIP *rect = rect_create(0, 0, x, y, width, height);
-            // printf("创建rect\n");
-            //创建画面
-            PICTURE *picture = pic_new();
-            // printf("创建picture\n");
-            //将rect添加到画面
-            pic_add(picture, rect);
-            //printf("将rect添加\n");
-            //将画面添加到动作
-            ac_add(action, picture);
-            //printf("将picture添加\n");
-        }
-    //将动作添加到精灵
-    sp_add((long int) sprite, action);
-    // printf("精灵完成\n");
-
-
-
-
-
-    return sprite;
-};
+SPRITE *sp_bitmapcreate(long int bitmap, int width, int height);
 
 //新建一个精灵
-int32 sp_new() {
-    SPRITE *sprite = malloc(sizeof(SPRITE));
-    memset(sprite, 0, sizeof(SPRITE));
-    // printf("offset=%d\n",sprite->offset);
-    return (int32) sprite;
-};
-
+int32 sp_new();
 //创建精灵
-SPRITE *sp_create(ACTION *action, int size) {
-    SPRITE *sprite = malloc(sizeof(SPRITE));
-    int i;
-    for (i = 0; i < 10; i++)
-        sprite->action[i] = action;
-    sprite->id = -1;
-    sprite->x = 0;
-    sprite->y = 0;
-    sprite->offset = 0;
-    sprite->size = size;
-
-
-    return sprite;
-};
+SPRITE *sp_create(ACTION *action, int size);
 
 //通过加载一张图片完成精灵创建
 //参数：精灵id，精灵宽度 高度
@@ -219,227 +156,69 @@ void printf_rectf(int x,int y,int width,int height,int movex,int movey)
 */
 
 //设置精灵的图片
-void sp_setBitmap(long int id, int32 bitmap) {
-    SPRITE *sprite = (void *) id;
-    //LOGI("sp_setBitmap %d %d",id,bitmap);
-    sprite->bitmap = bitmap;
-
-};
+void sp_setBitmap(long int id, int32 bitmap);
 
 //设置精灵显示/隐藏
-int sp_setDraw(long int id, int isdraw) {
-    SPRITE *sprite = (void *) id;
+int sp_setDraw(long int id, int isdraw);
 
-    sprite->isdraw = isdraw;
-    return 0;
-}
-
-int sp_isDraw(long int id) {
-    SPRITE *sprite = (void *) id;
-
-    return sprite->isdraw;
-}
+int sp_isDraw(long int id);
 
 
 //获取精灵id
-int sp_getId(long int id) {
-    SPRITE *sprite = (void *) id;
-
-    return sprite->id;
-}
+int sp_getId(long int id);
 
 
-int sp_setId(long int sprite, int id) {
-    SPRITE *sp = (void *) sprite;
-    sp->id = id;
-    return 0;
-}
+int sp_setId(long int sprite, int id);
 
-int sp_getFrame(long int id)//得到当前图像的帧序号
-{
-    SPRITE *sp = (void *) id;
-    return sp->action[sp->offset]->offset;
-}
+int sp_getFrame(long int id);
 
 //复制一个精灵
-long int sp_copy(long int id) {
-    int i = 0;
-    SPRITE *sprite = (void *) id;
-
-// if(sprite==NULL)return NULL;
-
-    //复制精灵
-    SPRITE *new_sprite = malloc(sizeof(SPRITE));
-    memcpy(new_sprite, sprite, sizeof(SPRITE));
-    //复制动作
-    for (i = 0; i < sprite->size; i++) {
-
-        new_sprite->action[i] = ac_copy(sprite->action[i]);
-
-    }
-    return (long int) new_sprite;
-
-};
+long sp_copy(long int id) ;
 
 //添加精灵的动作
 //参数：精灵句柄，动作句柄
-int sp_addAction(long int sprite_ptr, long int action_ptr) {
-    SPRITE *sprite = (void *) sprite_ptr;
-    sprite->action[sprite->size] = (void *) action_ptr;
-    sprite->size++;
-    return 0;
-}
+int sp_addAction(long int sprite_ptr, long int action_ptr);
 
 //设置精灵的动作
 //参数：精灵句柄，动作id
-int sp_setAction(long int id, int ac_id) {
-
-    SPRITE *sprite = (void *) id;
-
-    if (sprite->size > ac_id) {
-        sprite->offset = ac_id;
-        sprite->action[ac_id]->offset = 0;
-    }
-    return 0;
-}
+int sp_setAction(long int id, int ac_id);
 
 //获取精灵的动作
-int sp_getAction(long int id) {
-    SPRITE *sprite = (void *) id;
-
-    return sprite->offset;
-}
+int sp_getAction(long int id);
 
 //精灵移动
-int sp_move(long int id, int x, int y) {
-    SPRITE *sprite = (void *) id;
-
-    sprite->x += x;
-    sprite->y += y;
-    return 0;
-}
+int sp_move(long int id, int x, int y);
 
 
-int sp_setxy(long int id, int x, int y) {
-    SPRITE *sprite = (void *) id;
+int sp_setxy(long int id, int x, int y);
 
-    sprite->x = x;
-    sprite->y = y;
-    return 0;
-}
+int sp_getx(long int id);
 
-int sp_getx(long int id) {
-    SPRITE *sprite = (void *) id;
+int sp_gety(long int id);
 
-    return sprite->x;
-}
+int sp_getWidth(long int id);
 
-int sp_gety(long int id) {
-    SPRITE *sprite = (void *) id;
-
-    return sprite->y;
-}
-
-int sp_getWidth(long int id) {
-    SPRITE *sprite = (void *) id;
-
-    return sprite->w;
-
-}
-
-int sp_getHeight(long int id) {
-    SPRITE *sprite = (void *) id;
-
-    return sprite->h;
-}
+int sp_getHeight(long int id);
 
 //精灵是否被x y点中
-int sp_impact(long int id, int x, int y) {
-    SPRITE *sprite = (void *) id;
+int sp_impact(long int id, int x, int y);
 
-    ACTION *action = sprite->action[sprite->offset];
-    if (x >= sprite->x && x < sprite->x + sprite->w && y >= sprite->y && y < sprite->y + sprite->h)
-        return TRUE;
-    return FALSE;
-}
 
-int isCollisionRect(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2) {
-    //Logcat.e(""+x1 + " " + y1 + " " + w1+ " "  + h1+ " "  + x2+ " "  + y2+ " "  + w2+ " "  + h2);
-
-    //当矩形1 位于矩形2 的左侧
-    if (x1 > x2 && x1 >= x2 + w2) {
-        return FALSE;
-        //当矩形1 位于矩形2 的右侧
-    } else if (x1 < x2 && x1 + w1 <= x2) {
-        return FALSE;
-        //当矩形1 位于矩形2 的上方
-    } else if (y1 > y2 && y1 >= y2 + h2) {
-        return FALSE;
-        //当矩形1 位于矩形2 的下方
-    } else if (y1 < y2 && y1 + h1 <= y2) {
-        return FALSE;
-    }
-
-    //所有不会发生碰撞都不满足时，肯定就是碰撞了
-    return TRUE;
-}
+int isCollisionRect(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2);
 
 //精灵碰撞事件
 //参数：精灵1 精灵2
 //返回值：TRUE碰撞 FALSE不碰撞
-int sp_crash(long int id1,long int id2) {
-    _RECT *sprite1 = (void *) id1;
-    _RECT *sprite2 = (void *) id2;
-
-
-    return isCollisionRect(sprite1->x, sprite1->y, sprite1->w, sprite1->h, sprite2->x, sprite2->y,
-                           sprite2->w, sprite2->h);
-}
+int sp_crash(long int id1,long int id2);
 
 //显示精灵
-int sp_draw(long int id,long int ca) {
-    SPRITE *sp = (void *) id;
-    CAMERA *camera = (void *) ca;
-    if (sp == NULL)return -1;
-    if (sp->isdraw == FALSE)return 0;
-// printf("绘制精灵\n");
-// printf("%d \n",sp->bitmap);
-// printf("%d \n", (int) sp->action[0]);
-// printf("精灵x %d \n",sp->x);
-// printf("照相机 x%d ",camera->x);
-    if (camera == NULL)
-        ac_draw(sp->bitmap, sp->action[sp->offset], sp->x, sp->y);
-    else
-        ac_draw(sp->bitmap, sp->action[sp->offset], sp->x - camera->x, (sp->y) - (camera->y));
-    //if(sp->offset>=sp->size)sp->offset=0;
-    return 0;
-}
+int sp_draw(long int id,long int ca);
 
-void sp_run(long int id) {
-    SPRITE *sp = (void *) id;
-
-    if (sp == NULL)return;
-    ac_run(sp->action[sp->offset]);
-}
+void sp_run(long int id);
 
 
 //销毁精灵
-int sp_free(long int id) {
-    SPRITE *sprite = (void *) id;
-
-    //printf(" 开始释放精灵 \n");
-    //销毁动作
-    int i;
-
-    for (i = 0; i < sprite->size; i++) {
-        //bitmapFree(sprite->action[i]->bitmap[0]);
-        ac_free(sprite->action[i]);
-    }
-    free(sprite);
-    //printf(" 精灵释放成功 \n");
-
-    return 0;
-}
+int sp_free(long int id);
 
 
 #endif
