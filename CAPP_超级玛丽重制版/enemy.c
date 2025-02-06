@@ -9,6 +9,7 @@
 
 //初始化所有敌人
 void *en_create(char *filename) {
+    printf("en_create..\r\n");
     _EN_TASK *task = malloc(sizeof(_EN_TASK));
     memset(task, 0, sizeof(_EN_TASK));
     printf("加载bitmap\n");

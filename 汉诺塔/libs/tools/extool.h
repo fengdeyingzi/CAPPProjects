@@ -1,8 +1,8 @@
 #ifndef TOOL_H
 #define TOOL_H
 //手机CAPP隐藏功能部分集合
-#include "../api/android.h"
-
+#include "android.h"
+#include "exb.h"
 //获取imei
 char*get_imei()
 {
@@ -71,56 +71,56 @@ void share_text(char*title,char*text)
 //打开应用商店
 void goMarket(char *app)
 {
- char tmp[200];
- sprintf(tmp, "market://details?id=%s", app);
- int in=in_createIntent();
- in_setData(in, tmp);
- startActivity(in);
+//  char tmp[200];
+//  sprintf(tmp, "market://details?id=%s", app);
+//  int in=in_createIntent();
+//  in_setData(in, tmp);
+//  startActivity(in);
 }
 
 //拉起QQ
 void goQQ(char *qq)
 {
-char tmp[200];
- sprintf(tmp, "mqqwpa://im/chat?chat_type=wpa&uin=%s&version=1", qq);
+// char tmp[200];
+//  sprintf(tmp, "mqqwpa://im/chat?chat_type=wpa&uin=%s&version=1", qq);
  
- int in=in_createIntent();
- in_setData(in, tmp);
- startActivity(in);
+//  int in=in_createIntent();
+//  in_setData(in, tmp);
+//  startActivity(in);
 }
 
 //查看QQ资料
 void joinQQ(char *qq)
 {
- char tmp[200];
- sprintf(tmp, "mqqapi://card/show_pslcard?src_type=internal&version=1&uin=%s&card_type=person&source=qrcode", qq);
+//  char tmp[200];
+//  sprintf(tmp, "mqqapi://card/show_pslcard?src_type=internal&version=1&uin=%s&card_type=person&source=qrcode", qq);
  
- int in=in_createIntent();
- in_setData(in, tmp);
- startActivity(in);
+//  int in=in_createIntent();
+//  in_setData(in, tmp);
+//  startActivity(in);
             
 }
 
 //拉起QQ群
 void goQun(char *qun)
 {
- char tmp[200];
- sprintf(tmp, "mqqwpa://im/chat?chat_type=group&uin=%s&version=1", qun);
+//  char tmp[200];
+//  sprintf(tmp, "mqqwpa://im/chat?chat_type=group&uin=%s&version=1", qun);
  
- int in=in_createIntent();
- in_setData(in, tmp);
- startActivity(in);
+//  int in=in_createIntent();
+//  in_setData(in, tmp);
+//  startActivity(in);
 }
 
 //查看QQ群资料
 void joinQun(char *qun)
 {
- char tmp[200];
- sprintf(tmp, "mqqapi://card/show_pslcard?src_type=internal&version=1&uin=%s&card_type=group&source=qrcode", qun);
+//  char tmp[200];
+//  sprintf(tmp, "mqqapi://card/show_pslcard?src_type=internal&version=1&uin=%s&card_type=group&source=qrcode", qun);
  
- int in=in_createIntent();
- in_setData(in, tmp);
- startActivity(in);
+//  int in=in_createIntent();
+//  in_setData(in, tmp);
+//  startActivity(in);
 }
 
 

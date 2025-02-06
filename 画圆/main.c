@@ -36,3 +36,7 @@ int event(int type, int p1, int p2) {
 int pause() { return 0; }
 
 int resume() { return 0; }
+
+int exitApp(){
+  return 0;
+}

@@ -1,0 +1,23 @@
+{
+  "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, UseTab: Always, IndentWidth: 4, TabWidth: 4, AllowShortIfStatementsOnASingleLine: false, IndentCaseLabels: false, ColumnLimit: 0, AccessModifierOffset: -4, NamespaceIndentation: All, FixNamespaceComments: false }",
+  "files.associations": {
+    "*.sqlbook": "sql",
+    "*.ndjson": "jsonl",
+    "*.dbclient-js": "javascript",
+    "jni.h": "c",
+    "def.h": "c",
+    "cjson.h": "c",
+    "base.h": "c",
+    "string.h": "c"
+  },
+  "files.encoding": "utf8",
+  "[bat]": {
+      "files.encoding": "gbk"
+  },
+  "[c]": {
+      "files.encoding": "utf8"
+  },
+  "[h]": {
+      "files.encoding": "utf8"
+  }
+}

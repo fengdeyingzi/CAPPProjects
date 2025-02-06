@@ -1,7 +1,7 @@
 #ifndef XGUI_IMAGEBUTTON_H
 #define XGUI_IMAGEBUTTON_H
-#include "../api/graphics.h"
-#include "../api/ex_math.h"
+#include "graphics.h"
+#include "ex_math.h"
 #include "./bitmap.h"
 
 typedef struct

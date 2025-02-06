@@ -1,6 +1,6 @@
 #ifndef _BITMAP_H_
 #define _BITMAP_H_
-#include "../api/graphics.h"
+#include "graphics.h"
 
 #define MAKERGBA(r,g,b,a)((r<<24)|(g<<16)|(b<<8)|a)
 #define MAKEABGR(a,b,g,r)((a<<24)|(b<<16)|(g<<8)|r)

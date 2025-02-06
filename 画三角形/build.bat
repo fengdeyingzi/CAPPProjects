@@ -1,0 +1,1 @@
+java -jar D:\app\mrpbuilder.jar -t gcc -o libcapp.dll -I. -I../src -i main.c ../src

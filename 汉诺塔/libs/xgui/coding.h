@@ -1,8 +1,8 @@
 #ifndef _CODING_H_
 #define _CODING_H_
 
-#include "../api/base.h"
-#include "../api/exb.h"
+#include "base.h"
+#include "exb.h"
 
 //gb编码转unicode 返回的字符串需要释放内存
 char*gbToUn(char*text)

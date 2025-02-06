@@ -1,9 +1,9 @@
 #ifndef XGUI_TEXTVIEW_H
 #define XGUI_TEXTVIEW_H
 
-#include "../api/base.h"
-#include "../api/graphics.h"
-#include "../api/ex_math.h"
+#include "base.h"
+#include "graphics.h"
+#include "ex_math.h"
 #include "./coding.h"
 
 typedef struct
@@ -100,7 +100,7 @@ void textview_draw(TextView*view)
  {
   drawRect(view->x,view->y,view->w,view->h,view->backgroundColor);
   if(view->text!=NULL)
-  	dtextex(view->text,view->tx,view->ty,rect,color,1|2,view->font);
+  	dtextex(view->text,view->tx,view->ty,&rect,&color,1|2,view->font);
  }
 }
 

@@ -1,0 +1,201 @@
+<sprite
+ bitmap=""
+ width="20"
+ height="20"
+ 
+>
+  <action
+  name="¾²Ö¹"
+  mode="1"
+>
+  
+
+   <picture
+   >
+      <rectflip
+      x="-6"
+      y="-44"
+      width="32"
+      height="64"
+      px="0"
+      py="0"
+      />
+   </picture>
+
+
+  </action>
+
+  <action
+  name="ÅÜ"
+  mode="1"
+>
+  
+
+   <picture
+   >
+      <rectflip
+      x="-6"
+      y="-44"
+      width="32"
+      height="64"
+      px="0"
+      py="64"
+      />
+   </picture>
+
+
+   <picture
+   >
+      <rectflip
+      x="-6"
+      y="-44"
+      width="32"
+      height="64"
+      px="32"
+      py="64"
+      />
+   </picture>
+      <picture
+   >
+      <rectflip
+      x="-6"
+      y="-44"
+      width="32"
+      height="64"
+      px="0"
+      py="64"
+      />
+   </picture>
+
+   <picture
+   >
+      <rectflip
+      x="-6"
+      y="-44"
+      width="32"
+      height="64"
+      px="0"
+      py="0"
+      />
+   </picture>
+
+
+  </action>
+
+  <action
+  name="Ìø"
+  mode="1"
+>
+   <picture
+   >
+      <rectflip
+      x="-6"
+      y="-44"
+      width="32"
+      height="64"
+      px="0"
+      py="128"
+      />
+   </picture>
+  </action>
+
+  <action
+  name="¶×"
+  mode="1"
+>
+   <picture
+   >
+      <rectflip
+      x="-6"
+      y="-44"
+      width="32"
+      height="64"
+      px="0"
+      py="192"
+      />
+   </picture>
+  </action>
+
+  <action
+  name="À­Æì"
+  mode="1"
+>
+   <picture
+   >
+      <rectflip
+      x="-6"
+      y="-44"
+      width="32"
+      height="64"
+      px="0"
+      py="256"
+      />
+   </picture>
+
+  </action>
+
+  <action
+  name="À­ÆìÍê±Ï"
+  mode="1"
+>
+  
+
+   <picture
+   >
+      <rectflip
+      x="-6"
+      y="-44"
+      width="32"
+      height="64"
+      px="0"
+      py="320"
+      />
+   </picture>
+
+  </action>
+
+  <action
+  name="Ê¤Àû"
+  mode="1"
+>
+  
+
+   <picture
+   >
+      <rectflip
+      x="-6"
+      y="-44"
+      width="32"
+      height="64"
+      px="0"
+      py="384"
+      />
+   </picture>
+
+
+
+  </action>
+
+  <action
+  name="ËÀÍö"
+  mode="1"
+>
+  
+
+   <picture
+   >
+      <rectflip
+      x="-6"
+      y="-44"
+      width="32"
+      height="64"
+      px="0"
+      py="448"
+      />
+   </picture>
+
+
+
+  </action>
+
+</sprite>

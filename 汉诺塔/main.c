@@ -2,29 +2,29 @@
 #include "libs/xgui/ToolBar.h"
 
 /*
-×÷Õß£ºó¬ó°òåòåòÐòÐ
-Q  Q£º1126390395
+ä½œè€…ï¼šèŸ‹èŸ€èˆèˆè›è›
+Q  Qï¼š1126390395
 */
 
-//²Ëµ¥
+//èœå•
 Button*title = NULL;
 Button*start = NULL;
 Button*about = NULL;
 Button*tuichu = NULL;
 
-//ÓÎÏ·±³¾°
+//æ¸¸æˆèƒŒæ™¯
 View*one = NULL;
 View*two = NULL;
 View*three = NULL;
 
-//ÓÎÏ·UI
+//æ¸¸æˆUI
 Button*score = NULL;
 
-//ÓÎÏ·Êý¾Ý
+//æ¸¸æˆæ•°æ®
 int max = 3,select = 0,point = 0;
 int o[10],oo[10],ooo[10];
 
-//ÍË³öapp
+//é€€å‡ºapp
 void exitUi()
 {
  btn_free(title);
@@ -57,7 +57,7 @@ void showMenu()
  ref(0,0,SW,SH);
 }
 
-//Òþ²Ø²Ëµ¥
+//éšè—èœå•
 void hideMenu()
 {
  btn_hide(tuichu);
@@ -66,7 +66,7 @@ void hideMenu()
  // btn_hide(title);
 }
 
-//ÓÎÏ·Êý¾Ý
+//æ¸¸æˆæ•°æ®
 void gameData(int n)
 {
  max = n+2;
@@ -80,7 +80,7 @@ void gameData(int n)
  	o[i] = i+1;
 }
 
-//»æÖÆººÅµËþ
+//ç»˜åˆ¶æ±‰è¯ºå¡”
 void drawGame()
 {
  if(point==0)
@@ -90,11 +90,11 @@ void drawGame()
  if(!btn_isshow(start))
  {
   drawRect(one->x+one->w/2-10,one->y,20,one->h,0xff805060);
-  dtext("Æðµã", one->x+one->w/2-50, one->y+one->h+50, 0xff, 0xff, 0xff, 0, 1);
+  dtext("èµ·ç‚¹", one->x+one->w/2-50, one->y+one->h+50, 0xff, 0xff, 0xff, 0, 1);
   drawRect(two->x+one->w/2-10,two->y,20,two->h,0xff805060);
   drawRect(three->x+one->w/2-10,three->y,20,three->h,0xff805060);
-  dtext("ÖÕµã", three->x+three->w/2-50, three->y+three->h+50, 0xff, 0xff, 0xff, 0, 1);
-  sprintf(text, "¹Ø¿¨£º%d", point);
+  dtext("ç»ˆç‚¹", three->x+three->w/2-50, three->y+three->h+50, 0xff, 0xff, 0xff, 0, 1);
+  sprintf(text, "å…³å¡ï¼š%d", point);
   dtext(text, title->x+title->w+100, title->y+10, 0xff, 0xff, 0xff, 0, 1);
  }
  
@@ -116,7 +116,7 @@ void drawGame()
   }
  }
  
- //»æÖÆÑ¡ÖÐ
+ //ç»˜åˆ¶é€‰ä¸­
  for(int i = 0;i<max;i++)
  {
   if(o[i]!=0&&select==1)
@@ -138,7 +138,7 @@ void drawGame()
 }
 
 
-//ÏÔÊ¾ÓÎÏ·
+//æ˜¾ç¤ºæ¸¸æˆ
 void showGame()
 {
  cls(0x80,0x60,0x90);
@@ -155,7 +155,7 @@ void showGame()
  drawGame();
 }
 
-//ÓÎÏ·Éý¼¶
+//æ¸¸æˆå‡çº§
 void gameWin()
 {
  if(o[max-1]==0&&oo[max-1]==0&&ooo[max-1]!=0)
@@ -166,7 +166,7 @@ void gameWin()
  }
 }
 
-//ÉèÖÃ
+//è®¾ç½®
 int setNum(int select,int num)
 {
  switch(select)
@@ -207,7 +207,7 @@ int setNum(int select,int num)
  return-1;
 }
 
-//»ñÈ¡
+//èŽ·å–
 int delNum(int select)
 {
  switch(select)
@@ -240,7 +240,7 @@ int delNum(int select)
  return 0;
 }
 
-//»ñÈ¡
+//èŽ·å–
 int getNum(int select)
 {
  switch(select)
@@ -264,7 +264,7 @@ int getNum(int select)
  return 0;
 }
 
-//app¼àÌý
+//appç›‘å¬
 void appClick(int id)
 {
  cls(0x80,0x60,0x90);
@@ -356,11 +356,11 @@ void appClick(int id)
  ref(0,0,SW,SH);
 }
 
-//³õÊ¼»¯app
+//åˆå§‹åŒ–app
 void initApp()
 {
- //²Ëµ¥
- title = btn_create("ººÅµËþ",10,10,200-20,100-20);
+ //èœå•
+ title = btn_create("æ±‰è¯ºå¡”",10,10,200-20,100-20);
  start = btn_create("START",300,100,SW-600,150);
  about = btn_create("ABOUT",300,300,SW-600,150);
  tuichu = btn_create("EXIT",300,500,SW-600,150);
@@ -380,7 +380,7 @@ void initApp()
  btn_draw(start);
  btn_draw(title);
  
- //ÓÎÏ·
+ //æ¸¸æˆ
  one = view_create(50,200,SW/3-100,SH-400);
  two = view_create(SW/3+50,200,SW/3-100,SH-400);
  three = view_create(SW/3*2+50,200,SW/3-100,SH-400);
@@ -395,7 +395,7 @@ void initApp()
  view_setonclick(three,appClick);
 }
 
-//appÊÂ¼þ
+//appäº‹ä»¶
 void appEvent(int type,int p1,int p2)
 {
  //btn_event(title, type, p1, p2);
@@ -426,11 +426,12 @@ void appEvent(int type,int p1,int p2)
  }
 }
 
-//Èë¿Úº¯Êý
+//å…¥å£å‡½æ•°
 int init()
 {
  cls(0x80,0x60,0x90);
  setscrsize(1280,1280*SH/SW);
+// setscrsize(1080, 720);
  //set_statusBarColor(0x80806090);
  
  initApp();
@@ -439,21 +440,21 @@ int init()
  return 0;
 }
 
-//eventº¯Êý
+//eventå‡½æ•°
 int event(int type,int p1,int p2)
 {
- //appÊÂ¼þ
+ //appäº‹ä»¶
  appEvent(type,p1,p2);
  return 0;
 }
 
-//Ó¦ÓÃÔÝÍ£
+//åº”ç”¨æš‚åœ
 int pause()
 {
  return 0;
 }
 
-//Ó¦ÓÃ»Ö¸´
+//åº”ç”¨æ¢å¤
 int resume()
 {
  return 0;

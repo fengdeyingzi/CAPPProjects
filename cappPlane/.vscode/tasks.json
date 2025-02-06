@@ -1,0 +1,28 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "局域网调用手机CAPP运行",
+			"type": "shell",
+			"command": [
+				"${workspaceFolder}/run.cmd;",
+				"echo '请求已发送，等待手机CAPP启动运行。如果超时，请检查网络连接或IP配置是否正确。'"
+			],
+			"problemMatcher": [],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"presentation": {
+				"echo": false,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": true
+			}
+		}
+	]
+}

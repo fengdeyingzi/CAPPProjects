@@ -13,14 +13,17 @@
 #include "map.h"
 
 void *tiled_createData(char *txtfile, char *spritefile, int bitmap) {
+    printf("tiled create\r\n");
     _TILED *tiled = malloc(sizeof(_TILED));
     int len;
     memset(tiled, 0, sizeof(_TILED));
     tiled->camera = ca_create(0, 0, SCRW, SCRH);
+    printf("ca create...\r\n");
     tiled->world = world_create();
     world_setCamera(tiled->world, tiled->camera);
     //创建敌人
     tiled->en_task = en_create("enemy1.txt");
+    printf("add world..\r\n");
     en_addWorld(tiled->en_task, tiled->world);
     char *buf = readFileFromAssets(txtfile, &len);
     char *text = malloc(len + 1);
@@ -37,7 +40,7 @@ void *tiled_createData(char *txtfile, char *spritefile, int bitmap) {
     printf("读取精灵\n");
     int sprite = sp_read(spritefile, bitmap);
 
-    //将图块循环添加到世界中
+    //将图块循环添加到世界�?
     printf("添加图块\n");
     int ix, iy;
     int sp_temp;
@@ -60,7 +63,7 @@ void *tiled_createData(char *txtfile, char *spritefile, int bitmap) {
 
 
 //创建tiled
-//参数：地图文件路径 精灵文件路径
+//参数：地图文件路�? 精灵文件路径
 void *tiled_create(char *tmxfile, char *spritefile, int bitmap) {
     _TILED *tiled = malloc(sizeof(_TILED));
     int len;
@@ -82,7 +85,7 @@ void *tiled_create(char *tmxfile, char *spritefile, int bitmap) {
     tiled->camera = ca_create(0, 0, SCRW, SCRH);
     tiled->world = world_create();
     world_setCamera(tiled->world, tiled->camera);
-    //将图块循环添加到世界中
+    //将图块循环添加到世界�?
     printf("添加图块\n");
     int ix, iy;
     int32 sp_temp;
@@ -113,17 +116,17 @@ int tiled_getItemWidth(_TILED *tiled) {
     return tiled->itemw;
 }
 
-//获取摄像机
+//获取摄像�?
 int tiled_getCamera(_TILED *tiled) {
     return tiled->camera;
 }
 
-//获取指定位置的图块精灵
+//获取指定位置的图块精�?
 int tiled_getSprite(_TILED *tiled, int x, int y) {
     return tiled->sprite[y * tiled->width + x];
 }
 
-//获取指定位置的地图数据
+//获取指定位置的地图数�?
 int tiled_getDataXY(_TILED *tiled, int x, int y) {
     return tiled->data[y * tiled->width + x];
 }
@@ -134,7 +137,7 @@ int tiled_getDataCoor(_TILED *tiled, int x, int y) {
 }
 
 
-//销毁地图
+//销毁地�?
 int tiled_free(_TILED *tiled) {
     if(tiled == NULL){
         return 0;

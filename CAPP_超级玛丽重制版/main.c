@@ -95,6 +95,7 @@ printf("测试读取tmx");
 int init()
 {
     //调用函数helloworld
+    printf("start run\r\n");
     helloworld();
     time_data=0;
 

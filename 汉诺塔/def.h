@@ -1,8 +1,8 @@
 //加载系统头文件
-#include "libs/api/base.h"
-#include "libs/api/android.h"
-#include "libs/api/graphics.h"
-#include "libs/api/ex_math.h"
+#include "base.h"
+#include "android.h"
+#include "graphics.h"
+#include "ex_math.h"
 
 //加载工具头文件
 #include "libs/tools/extool.h"

@@ -1,8 +1,8 @@
 #ifndef XGUI_VIEW_H
 #define XGUI_VIEW_H
-#include "../api/base.h"
-#include "../api/graphics.h"
-#include "../api/ex_math.h"
+#include "base.h"
+#include "graphics.h"
+#include "ex_math.h"
 
 typedef struct
 {
